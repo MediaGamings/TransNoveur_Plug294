@@ -79,14 +79,11 @@ namespace TransNoveur_Plug294
         }
         
         // Quand le plugin charge
-        public override async void OnPluginInit()
+        public override void OnPluginInit()
         {
             base.OnPluginInit();
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("TransNoveur_Plug294 loaded (made by MediaGamings)");
-            var myItem = Nova.man.item.GetItem(1505); //Tomate
-            myItem.buyable = true;
-            myItem.resellable = true;
         }
         
         public TransNoveurPlug294(IGameAPI api) : base(api)
@@ -116,6 +113,10 @@ namespace TransNoveur_Plug294
                 mainmenu.AddTabLine("Nourriture", "", GetItemIconId(27), ui =>
                 {
                     Nourriture(player); 
+                });
+                mainmenu.AddTabLine("Objets", "", GetItemIconId(8), ui =>
+                {
+                    MainObjectMenu(player);
                 });
                 mainmenu.AddButton("<color=#f00020> Fermer </color>", ui =>
                 {
@@ -248,7 +249,6 @@ namespace TransNoveur_Plug294
         }
 
         // Menu Voiture Normale
-        
         public int PremierePrice = 2500;
         public int BerlingoPrice = 5000;
         public int OlympiaPrice = 25000;
@@ -259,7 +259,7 @@ namespace TransNoveur_Plug294
         public int PeagotPrice = 25000;
         public int PaegoPrice = 10000;
         public int LeafPrcie = 15000;
-        public int kornranger = 30000;
+        public int Kornranger = 30000;
         public void NormaleCarDealer(Player player)
         {
             UIPanel normalecar = new UIPanel("Restauration voiture", UIPanel.PanelType.TabPrice);
@@ -303,9 +303,9 @@ namespace TransNoveur_Plug294
             {
                 Buy(player, LeafPrcie, 54);
             });
-            normalecar.AddTabLine("Korn Ranger", kornranger.ToString() + "€", GetVehicleIconId(56), ui =>
+            normalecar.AddTabLine("Korn Ranger", Kornranger.ToString() + "€", GetVehicleIconId(56), ui =>
             {
-                Buy(player, kornranger, 56);
+                Buy(player, Kornranger, 56);
             });
             normalecar.AddButton("<color=#f00020> Fermer </color>", ui =>
             {
@@ -326,10 +326,9 @@ namespace TransNoveur_Plug294
         }
         
         // Menu voiture Cargo
-
         public int MasterPrice = 50;
         public int FourgonPrice = 50;
-        public int FTRPrice = 50;
+        public int FtrPrice = 50;
         
         public void CargoCarDealer(Player player)
         {
@@ -342,9 +341,9 @@ namespace TransNoveur_Plug294
             {
                 Buy(player, FourgonPrice, 52);
             });
-            cargocar.AddTabLine("FTR", FTRPrice.ToString() + "€", GetVehicleIconId(58), ui =>
+            cargocar.AddTabLine("FTR", FtrPrice.ToString() + "€", GetVehicleIconId(58), ui =>
             {
-                Buy(player, FTRPrice, 58);
+                Buy(player, FtrPrice, 58);
             });
             cargocar.AddButton("<color=#f00020> Fermer </color>", ui =>
             {
@@ -365,110 +364,109 @@ namespace TransNoveur_Plug294
         }
 
         // Menu Voiture Entreprise
-
-        public int euro_lion = 30000;
-        public int master_police = 25000;
-        public int master_vsav = 25000;
-        public int meganeivpolice = 15000;
-        public int balayeuse = 10000;
-        public int poubelle = 30000;
-        public int berlingo_pn = 15000;
-        public int depanneuse = 20000;
-        public int olympia_igpn = 30000;
-        public int berlingo_poste = 12000;
-        public int brinks = 40000;
-        public int master_samu = 25000;
-        public int olympia_unmarked = 30000;
-        public int fast_scoler = 30000;
-        public int master_dde = 25000;
-        public int peago_pn = 20000;
-        public int peago_igpn = 25000;
-        public int peago_samu = 20000;
-        public int express_pizza = 3000;
-        public int kart = 10000;
+        public int EuroLion = 30000;
+        public int MasterPolice = 25000;
+        public int MasterVsav = 25000;
+        public int Meganeivpolice = 15000;
+        public int Balayeuse = 10000;
+        public int Poubelle = 30000;
+        public int BerlingoPn = 15000;
+        public int Depanneuse = 20000;
+        public int OlympiaIgpn = 30000;
+        public int BerlingoPoste = 12000;
+        public int Brinks = 40000;
+        public int MasterSamu = 25000;
+        public int OlympiaUnmarked = 30000;
+        public int FastScoler = 30000;
+        public int MasterDde = 25000;
+        public int PeagoPn = 20000;
+        public int PeagoIgpn = 25000;
+        public int PeagoSamu = 20000;
+        public int ExpressPizza = 3000;
+        public int Kart = 10000;
         
         public void CompanyCarDealer(Player player)
         {
             UIPanel companycar = new UIPanel("Restauration voiture", UIPanel.PanelType.TabPrice);
-            companycar.AddTabLine("Euro Lion", euro_lion.ToString() + "€", GetVehicleIconId(3), ui =>
+            companycar.AddTabLine("Euro Lion", EuroLion.ToString() + "€", GetVehicleIconId(3), ui =>
             {
-                Buy(player, euro_lion, 3);
+                Buy(player, EuroLion, 3);
             });
-            companycar.AddTabLine("Master Police", master_police.ToString() + "€", GetVehicleIconId(4), ui =>
+            companycar.AddTabLine("Master Police", MasterPolice.ToString() + "€", GetVehicleIconId(4), ui =>
             {
-                Buy(player, master_police, 4);
+                Buy(player, MasterPolice, 4);
             });
-            companycar.AddTabLine("Master VSAV", master_vsav.ToString() + "€", GetVehicleIconId(5), ui =>
+            companycar.AddTabLine("Master VSAV", MasterVsav.ToString() + "€", GetVehicleIconId(5), ui =>
             {
-                Buy(player, master_vsav, 5);
+                Buy(player, MasterVsav, 5);
             });
-            companycar.AddTabLine("Megane IV Police", meganeivpolice.ToString() + "€", GetVehicleIconId(6), ui =>
+            companycar.AddTabLine("Megane IV Police", Meganeivpolice.ToString() + "€", GetVehicleIconId(6), ui =>
             {
-                Buy(player, meganeivpolice, 6);
+                Buy(player, Meganeivpolice, 6);
             });
-            companycar.AddTabLine("Balayeuse", balayeuse.ToString() + "€", GetVehicleIconId(7), ui =>
+            companycar.AddTabLine("Balayeuse", Balayeuse.ToString() + "€", GetVehicleIconId(7), ui =>
             {
-                Buy(player, balayeuse, 7);
+                Buy(player, Balayeuse, 7);
             });
-            companycar.AddTabLine("Camion Poubelle", poubelle.ToString() + "€", GetVehicleIconId(9), ui =>
+            companycar.AddTabLine("Camion Poubelle", Poubelle.ToString() + "€", GetVehicleIconId(9), ui =>
             {
-                Buy(player, poubelle, 9);
+                Buy(player, Poubelle, 9);
             });
-            companycar.AddTabLine("Berlingo PN", berlingo_pn.ToString() + "€", GetVehicleIconId(11), ui =>
+            companycar.AddTabLine("Berlingo PN", BerlingoPn.ToString() + "€", GetVehicleIconId(11), ui =>
             {
-                Buy(player, berlingo_pn, 11);
+                Buy(player, BerlingoPn, 11);
             });
-            companycar.AddTabLine("Dépanneuse", depanneuse.ToString() + "€", GetVehicleIconId(12), ui =>
+            companycar.AddTabLine("Dépanneuse", Depanneuse.ToString() + "€", GetVehicleIconId(12), ui =>
             {
-                Buy(player, depanneuse, 12);
+                Buy(player, Depanneuse, 12);
             });
-            companycar.AddTabLine("Olympia A7 IGPN", olympia_igpn.ToString() + "€", GetVehicleIconId(18), ui =>
+            companycar.AddTabLine("Olympia A7 IGPN", OlympiaIgpn.ToString() + "€", GetVehicleIconId(18), ui =>
             {
-                Buy(player, olympia_igpn, 18);
+                Buy(player, OlympiaIgpn, 18);
             });
-            companycar.AddTabLine("Berlingo Poste", berlingo_poste.ToString() + "€", GetVehicleIconId(23), ui =>
+            companycar.AddTabLine("Berlingo Poste", BerlingoPoste.ToString() + "€", GetVehicleIconId(23), ui =>
             {
-                Buy(player, berlingo_poste, 23);
+                Buy(player, BerlingoPoste, 23);
             });
-            companycar.AddTabLine("Brinks", brinks.ToString() + "€", GetVehicleIconId(25), ui =>
+            companycar.AddTabLine("Brinks", Brinks.ToString() + "€", GetVehicleIconId(25), ui =>
             {
-                Buy(player, brinks, 25);
+                Buy(player, Brinks, 25);
             });
-            companycar.AddTabLine("Master SAMU", master_samu.ToString() + "€", GetVehicleIconId(27), ui =>
+            companycar.AddTabLine("Master SAMU", MasterSamu.ToString() + "€", GetVehicleIconId(27), ui =>
             {
-                Buy(player, master_samu, 27);
+                Buy(player, MasterSamu, 27);
             });
-            companycar.AddTabLine("Olympia A7 Unmarked", olympia_unmarked.ToString() + "€", GetVehicleIconId(34), ui =>
+            companycar.AddTabLine("Olympia A7 Unmarked", OlympiaUnmarked.ToString() + "€", GetVehicleIconId(34), ui =>
             {
-                Buy(player, olympia_unmarked, 34);
+                Buy(player, OlympiaUnmarked, 34);
             });
-            companycar.AddTabLine("Fast Scoler", fast_scoler.ToString() + "€", GetVehicleIconId(36), ui =>
+            companycar.AddTabLine("Fast Scoler", FastScoler.ToString() + "€", GetVehicleIconId(36), ui =>
             {
-                Buy(player, fast_scoler, 36);
+                Buy(player, FastScoler, 36);
             });
-            companycar.AddTabLine("Master DDE", master_dde.ToString() + "€", GetVehicleIconId(37), ui =>
+            companycar.AddTabLine("Master DDE", MasterDde.ToString() + "€", GetVehicleIconId(37), ui =>
             {
-                Buy(player, master_dde, 37);
+                Buy(player, MasterDde, 37);
             });
-            companycar.AddTabLine("5008 PN", peago_pn.ToString() + "€", GetVehicleIconId(42), ui =>
+            companycar.AddTabLine("5008 PN", PeagoPn.ToString() + "€", GetVehicleIconId(42), ui =>
             {
-                Buy(player, peago_pn, 42);
+                Buy(player, PeagoPn, 42);
             });
-            companycar.AddTabLine("5008 IGPN", peago_igpn.ToString() + "€", GetVehicleIconId(43), ui =>
+            companycar.AddTabLine("5008 IGPN", PeagoIgpn.ToString() + "€", GetVehicleIconId(43), ui =>
             {
-                Buy(player, peago_igpn, 43);
+                Buy(player, PeagoIgpn, 43);
             });
-            companycar.AddTabLine("5008 SAMU", peago_samu.ToString() + "€", GetVehicleIconId(46), ui =>
+            companycar.AddTabLine("5008 SAMU", PeagoSamu.ToString() + "€", GetVehicleIconId(46), ui =>
             {
-                Buy(player, peago_samu, 46);
+                Buy(player, PeagoSamu, 46);
             });
-            companycar.AddTabLine("Express Pizza", express_pizza.ToString() + "€", GetVehicleIconId(51), ui =>
+            companycar.AddTabLine("Express Pizza", ExpressPizza.ToString() + "€", GetVehicleIconId(51), ui =>
             {
-                Buy(player, express_pizza, 5);
+                Buy(player, ExpressPizza, 5);
             });
-            companycar.AddTabLine("Kart", kart.ToString() + "€", GetVehicleIconId(53), ui =>
+            companycar.AddTabLine("Kart", Kart.ToString() + "€", GetVehicleIconId(53), ui =>
             {
-                Buy(player, kart, 53);
+                Buy(player, Kart, 53);
             });
             companycar.AddButton("<color=#f00020> Fermer </color>", ui =>
             {
@@ -489,35 +487,34 @@ namespace TransNoveur_Plug294
         }
         
         // Menu Voiture Sport
-
-        public int limoPrice = 100000;
-        public int RXPrice = 50000;
-        public int stellar_coupePrice = 75000;
-        public int modelsPrice = 150000;
-        public int stellar_sportPrice = 200000;
+        public int LimoPrice = 100000;
+        public int RxPrice = 50000;
+        public int StellarcoupePrice = 75000;
+        public int ModelsPrice = 150000;
+        public int StellarsportPrice = 200000;
         
         public void LuxuryCarDealer(Player player)
         {
             UIPanel luxurycar = new UIPanel("Restauration voiture", UIPanel.PanelType.TabPrice);
-            luxurycar.AddTabLine("Limousine", limoPrice.ToString() + "€", GetVehicleIconId(2), ui =>
+            luxurycar.AddTabLine("Limousine", LimoPrice.ToString() + "€", GetVehicleIconId(2), ui =>
             {
-                Buy(player,  limoPrice, 2);
+                Buy(player,  LimoPrice, 2);
             });
-            luxurycar.AddTabLine("RX7", RXPrice.ToString() + "€", GetVehicleIconId(14), ui =>
+            luxurycar.AddTabLine("RX7", RxPrice.ToString() + "€", GetVehicleIconId(14), ui =>
             {
-                Buy(player, RXPrice, 14);
+                Buy(player, RxPrice, 14);
             });
-            luxurycar.AddTabLine("Stellar Coupé", stellar_coupePrice.ToString() + "€", GetVehicleIconId(28), ui =>
+            luxurycar.AddTabLine("Stellar Coupé", StellarcoupePrice.ToString() + "€", GetVehicleIconId(28), ui =>
             {
-                Buy(player, stellar_coupePrice, 28);
+                Buy(player, StellarcoupePrice, 28);
             });
-            luxurycar.AddTabLine("V Model S", modelsPrice.ToString() + "€", GetVehicleIconId(40), ui =>
+            luxurycar.AddTabLine("V Model S", ModelsPrice.ToString() + "€", GetVehicleIconId(40), ui =>
             {
-                Buy(player, modelsPrice, 40);
+                Buy(player, ModelsPrice, 40);
             });
-            luxurycar.AddTabLine("Stellar 911 RS", stellar_sportPrice.ToString() + "€", GetVehicleIconId(55), ui =>
+            luxurycar.AddTabLine("Stellar 911 RS", StellarsportPrice.ToString() + "€", GetVehicleIconId(55), ui =>
             {
-                Buy(player, stellar_sportPrice, 55);
+                Buy(player, StellarsportPrice, 55);
             });
             luxurycar.AddButton("<color=#f00020> Fermer </color>", ui =>
             {
@@ -538,25 +535,24 @@ namespace TransNoveur_Plug294
         }
         
         // Menu Voiture Collection
-
-        public int delorean = 220000;
-        public int deloreanBTTF = 400000;
-        public int dodge_carger = 120000;
+        public int Delorean = 220000;
+        public int DeloreanBttf = 400000;
+        public int DodgeCharger = 120000;
         
         public void StarCarDealer(Player player)
         {
             UIPanel starcar = new UIPanel("Restauration voiture", UIPanel.PanelType.TabPrice);
-            starcar.AddTabLine("Delorean", delorean.ToString() + "€", GetVehicleIconId(22), ui =>
+            starcar.AddTabLine("Delorean", Delorean.ToString() + "€", GetVehicleIconId(22), ui =>
             {
-                Buy(player, delorean, 22);
+                Buy(player, Delorean, 22);
             });
-            starcar.AddTabLine("Delorean BTTF", deloreanBTTF.ToString() + "€", GetVehicleIconId(33), ui =>
+            starcar.AddTabLine("Delorean BTTF", DeloreanBttf.ToString() + "€", GetVehicleIconId(33), ui =>
             {
-                Buy(player, deloreanBTTF, 33);
+                Buy(player, DeloreanBttf, 33);
             });
-            starcar.AddTabLine("Dodge Charger", dodge_carger.ToString() + "€", GetVehicleIconId(35), ui =>
+            starcar.AddTabLine("Dodge Charger", DodgeCharger.ToString() + "€", GetVehicleIconId(35), ui =>
             {
-                Buy(player, dodge_carger, 35);
+                Buy(player, DodgeCharger, 35);
             });
             starcar.AddButton("<color=#f00020> Fermer </color>", ui =>
             {
@@ -768,6 +764,104 @@ namespace TransNoveur_Plug294
                 "Agriculture",
                 "Cuisine"
             }, "Restauration Nourriture", player.setup.transform.position);
+        }
+        
+        // Menu Objet Principale
+        public void MainObjectMenu(Player player)
+        {
+            UIPanel mainobjectmenu = new UIPanel("Restauration Objets", UIPanel.PanelType.TabPrice);
+            mainobjectmenu.AddTabLine("Arme/Outils", "", GetItemIconId(6), ui =>
+            {
+                WeaponObjectMenu(player);
+            });
+            mainobjectmenu.AddButton("<color=#f00020> Fermer </color>", ui =>
+            {
+                player.ClosePanel(mainobjectmenu);
+                player.Notify("Menu", "Vous avez fermer le menu de restauration.", NotificationManager.Type.Success, 3);
+            });
+            mainobjectmenu.AddButton("<color=#24a424> Choisir </color>", ui =>
+            {
+                player.ClosePanel(mainobjectmenu);
+                ui.SelectTab();
+            });
+            mainobjectmenu.AddButton("Retour", ui =>
+            {
+                player.ClosePanel(mainobjectmenu);
+                MainMenu(player);
+            });
+            player.ShowPanelUI(mainobjectmenu);
+        }
+        
+        // Menu Objet Arme/Outils
+        public void WeaponObjectMenu(Player player)
+        {
+            player.ShowShopUI(new Life.UI.ItemShopDefinition[] 
+            {
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 1,
+                    item = Nova.man.item.GetItem(9), //Pickaxe
+                    price = 50,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 1,
+                    item = Nova.man.item.GetItem(32), //Axe
+                    price = 50,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 1,
+                    item = Nova.man.item.GetItem(1580), //CrowBar
+                    price = 2000,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 0,
+                    item = Nova.man.item.GetItem(152), //Knife
+                    price = 5000,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 0,
+                    item = Nova.man.item.GetItem(36), //Taser
+                    price = 6000,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 0,
+                    item = Nova.man.item.GetItem(6), //Pistol
+                    price = 20000,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 0,
+                    item = Nova.man.item.GetItem(7), //Pistol Ammo
+                    price = 200,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 0,
+                    item = Nova.man.item.GetItem(1622), //Famas
+                    price = 80000,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 0,
+                    item = Nova.man.item.GetItem(1629), //M4A1
+                    price = 125000,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 0,
+                    item = Nova.man.item.GetItem(1623), //RifleAmmo
+                    price = 600,
+                }
+            }, new string[]
+            {
+                "Armes",
+                "Outils"
+            }, "Restauration Arme et Objets", player.setup.transform.position);
         }
     }
 }

@@ -39,7 +39,7 @@ namespace TransNoveur_Plug294
 
         // Pour obtenir les icon Item/Véhicule
         private static List<int> IconExceptions { get; set; } = new List<int> { 1, 2, 29, 30, 31 };
-        public static int GetItemIconId(int itemId)
+        private static int GetItemIconId(int itemId)
         {
             Item item = LifeManager.instance.item.GetItem(itemId);
             if (item == null)
@@ -66,7 +66,7 @@ namespace TransNoveur_Plug294
             return index >= 0 ? index : -1;
         }
 
-        public static int GetVehicleIconId(int modelId)
+        private static int GetVehicleIconId(int modelId)
         {
             Life.VehicleSystem.Vehicle vehicleModel = Nova.v.vehicleModels[modelId];
             if (vehicleModel.Icon == null)
@@ -538,7 +538,7 @@ namespace TransNoveur_Plug294
         public int Delorean = 220000;
         public int DeloreanBttf = 400000;
         public int DodgeCharger = 120000;
-        
+
         public void StarCarDealer(Player player)
         {
             UIPanel starcar = new UIPanel("Restauration voiture", UIPanel.PanelType.TabPrice);
@@ -770,9 +770,9 @@ namespace TransNoveur_Plug294
         public void MainObjectMenu(Player player)
         {
             UIPanel mainobjectmenu = new UIPanel("Restauration Objets", UIPanel.PanelType.TabPrice);
-            mainobjectmenu.AddTabLine("Arme/Outils", "", GetItemIconId(6), ui =>
+            mainobjectmenu.AddTabLine("Police", "", GetItemIconId(6), ui =>
             {
-                WeaponObjectMenu(player);
+                PoliceObjectMenu(player);
             });
             mainobjectmenu.AddButton("<color=#f00020> Fermer </color>", ui =>
             {
@@ -793,28 +793,10 @@ namespace TransNoveur_Plug294
         }
         
         // Menu Objet Arme/Outils
-        public void WeaponObjectMenu(Player player)
+        public void PoliceObjectMenu(Player player)
         {
             player.ShowShopUI(new Life.UI.ItemShopDefinition[] 
             {
-                new Life.UI.ItemShopDefinition()
-                {
-                    categoryId = 1,
-                    item = Nova.man.item.GetItem(9), //Pickaxe
-                    price = 50,
-                },
-                new Life.UI.ItemShopDefinition()
-                {
-                    categoryId = 1,
-                    item = Nova.man.item.GetItem(32), //Axe
-                    price = 50,
-                },
-                new Life.UI.ItemShopDefinition()
-                {
-                    categoryId = 1,
-                    item = Nova.man.item.GetItem(1580), //CrowBar
-                    price = 2000,
-                },
                 new Life.UI.ItemShopDefinition()
                 {
                     categoryId = 0,
@@ -856,12 +838,164 @@ namespace TransNoveur_Plug294
                     categoryId = 0,
                     item = Nova.man.item.GetItem(1623), //RifleAmmo
                     price = 600,
-                }
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 1,
+                    item = Nova.man.item.GetItem(1778), //Printer
+                    price = 3500,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 1,
+                    item = Nova.man.item.GetItem(1779), //Money of 5€ (illegal)
+                    price = 5,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 1,
+                    item = Nova.man.item.GetItem(1776), //Ink
+                    price = 0.10,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 1,
+                    item = Nova.man.item.GetItem(1777), //Paper
+                    price = 0.10,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 1,
+                    item = Nova.man.item.GetItem(1370), //5dollard
+                    price = 5,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 1,
+                    item = Nova.man.item.GetItem(1322), //5000dolard
+                    price = 5000,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 2,
+                    item = Nova.man.item.GetItem(10), //Expired Shit Seed
+                    price = 75,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 2,
+                    item = Nova.man.item.GetItem(127), //Shit Seed
+                    price = 200,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 2,
+                    item = Nova.man.item.GetItem(28), //Shit Leaves
+                    price = 500,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 2,
+                    item = Nova.man.item.GetItem(34), //Soil Pot
+                    price = 15,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 3,
+                    item = Nova.man.item.GetItem(1159), //Herse
+                    price = 250,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 3,
+                    item = Nova.man.item.GetItem(1235), //Sabot
+                    price = 50,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 3,
+                    item = Nova.man.item.GetItem(96), //Halte Police
+                    price = 80,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 3,
+                    item = Nova.man.item.GetItem(1324), //Bouclier balistique
+                    price = 450,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 3,
+                    item = Nova.man.item.GetItem(1463), //Gyro
+                    price = 100,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 3,
+                    item = Nova.man.item.GetItem(1464), //Panneau police
+                    price = 250,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 3,
+                    item = Nova.man.item.GetItem(1465), //Panneau Police sur pied
+                    price = 500,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 3,
+                    item = Nova.man.item.GetItem(1478), //Contour à la crai
+                    price = 50,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 3,
+                    item = Nova.man.item.GetItem(1528), //panneau gendarme mural
+                    price = 300,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 3,
+                    item = Nova.man.item.GetItem(1529), //panneau gendarme
+                    price = 250,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 3,
+                    item = Nova.man.item.GetItem(1562), //Néon panneau Police
+                    price = 350,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 3,
+                    item = Nova.man.item.GetItem(1563), //Néon panneau police mural
+                    price = 300,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 3,
+                    item = Nova.man.item.GetItem(1580), //Pied de biche
+                    price = 2000,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 3,
+                    item = Nova.man.item.GetItem(1626), //Plot de signalement
+                    price = 5,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 3,
+                    item = Nova.man.item.GetItem(1637), //Cinémomètre
+                    price = 2500,
+                },
             }, new string[]
             {
                 "Armes",
-                "Outils"
-            }, "Restauration Arme et Objets", player.setup.transform.position);
+                "Billet illégal",
+                "Drogue",
+                "Matériel"
+            }, "Restauration Police", player.setup.transform.position);
         }
     }
 }

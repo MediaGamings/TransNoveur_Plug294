@@ -11,7 +11,7 @@ Elle regroupe toutes les nourritures de base, les ingrédients pour les recettes
 🔹 Catégorie Illégal :
 Elle regroupe les armes, drogues et billets, permettant de fournir les gangs et autres personnes du serveur.
 
-⚠️ Le développeur recommande de ne pas changer de terrain, que l’ID de l’entreprise reste "2", et que l’entreprise soit gérée par un administrateur pour des raisons de fonctionnement et de sécurité.
+⚠️ Le développeur recommande de ne pas changer de terrain, que l’ID de l’entreprise soie la 2ème => "ID = 2", et que l’entreprise soit gérée par un administrateur pour des raisons de fonctionnement et de sécurité.
 
 🔧 Ce plugin utilise un webhook afin de fournir des informations analytiques à son développeur.
 

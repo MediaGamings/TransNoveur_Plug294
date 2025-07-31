@@ -114,9 +114,9 @@ namespace TransNoveur_Plug294
                 {
                     Nourriture(player); 
                 });
-                mainmenu.AddTabLine("Objets", "", GetItemIconId(8), ui =>
+                mainmenu.AddTabLine("Illégal", "", GetItemIconId(6), ui =>
                 {
-                    MainObjectMenu(player);
+                    IllegalMenu(player);
                 });
                 mainmenu.AddButton("<color=#f00020> Fermer </color>", ui =>
                 {
@@ -372,6 +372,7 @@ namespace TransNoveur_Plug294
         public int Poubelle = 30000;
         public int BerlingoPn = 15000;
         public int Depanneuse = 20000;
+        public int WildTownTruck = 30000;
         public int OlympiaIgpn = 30000;
         public int BerlingoPoste = 12000;
         public int Brinks = 40000;
@@ -419,6 +420,10 @@ namespace TransNoveur_Plug294
             companycar.AddTabLine("Dépanneuse", Depanneuse.ToString() + "€", GetVehicleIconId(12), ui =>
             {
                 Buy(player, Depanneuse, 12);
+            });
+            companycar.AddTabLine("Grande Dépanneuse", WildTownTruck.ToString() + "€", GetVehicleIconId(60), ui =>
+            {
+                Buy(player, WildTownTruck, 60);
             });
             companycar.AddTabLine("Olympia A7 IGPN", OlympiaIgpn.ToString() + "€", GetVehicleIconId(18), ui =>
             {
@@ -767,36 +772,16 @@ namespace TransNoveur_Plug294
         }
         
         // Menu Objet Principale
-        public void MainObjectMenu(Player player)
-        {
-            UIPanel mainobjectmenu = new UIPanel("Restauration Objets", UIPanel.PanelType.TabPrice);
-            mainobjectmenu.AddTabLine("Police", "", GetItemIconId(6), ui =>
-            {
-                PoliceObjectMenu(player);
-            });
-            mainobjectmenu.AddButton("<color=#f00020> Fermer </color>", ui =>
-            {
-                player.ClosePanel(mainobjectmenu);
-                player.Notify("Menu", "Vous avez fermer le menu de restauration.", NotificationManager.Type.Success, 3);
-            });
-            mainobjectmenu.AddButton("<color=#24a424> Choisir </color>", ui =>
-            {
-                player.ClosePanel(mainobjectmenu);
-                ui.SelectTab();
-            });
-            mainobjectmenu.AddButton("Retour", ui =>
-            {
-                player.ClosePanel(mainobjectmenu);
-                MainMenu(player);
-            });
-            player.ShowPanelUI(mainobjectmenu);
-        }
-        
-        // Menu Objet Arme/Outils
-        public void PoliceObjectMenu(Player player)
+        public void IllegalMenu(Player player)
         {
             player.ShowShopUI(new Life.UI.ItemShopDefinition[] 
             {
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 0,
+                    item = Nova.man.item.GetItem(1580), //Pied de biche
+                    price = 2000,
+                },
                 new Life.UI.ItemShopDefinition()
                 {
                     categoryId = 0,
@@ -899,103 +884,12 @@ namespace TransNoveur_Plug294
                     item = Nova.man.item.GetItem(34), //Soil Pot
                     price = 15,
                 },
-                new Life.UI.ItemShopDefinition()
-                {
-                    categoryId = 3,
-                    item = Nova.man.item.GetItem(1159), //Herse
-                    price = 250,
-                },
-                new Life.UI.ItemShopDefinition()
-                {
-                    categoryId = 3,
-                    item = Nova.man.item.GetItem(1235), //Sabot
-                    price = 50,
-                },
-                new Life.UI.ItemShopDefinition()
-                {
-                    categoryId = 3,
-                    item = Nova.man.item.GetItem(96), //Halte Police
-                    price = 80,
-                },
-                new Life.UI.ItemShopDefinition()
-                {
-                    categoryId = 3,
-                    item = Nova.man.item.GetItem(1324), //Bouclier balistique
-                    price = 450,
-                },
-                new Life.UI.ItemShopDefinition()
-                {
-                    categoryId = 3,
-                    item = Nova.man.item.GetItem(1463), //Gyro
-                    price = 100,
-                },
-                new Life.UI.ItemShopDefinition()
-                {
-                    categoryId = 3,
-                    item = Nova.man.item.GetItem(1464), //Panneau police
-                    price = 250,
-                },
-                new Life.UI.ItemShopDefinition()
-                {
-                    categoryId = 3,
-                    item = Nova.man.item.GetItem(1465), //Panneau Police sur pied
-                    price = 500,
-                },
-                new Life.UI.ItemShopDefinition()
-                {
-                    categoryId = 3,
-                    item = Nova.man.item.GetItem(1478), //Contour à la crai
-                    price = 50,
-                },
-                new Life.UI.ItemShopDefinition()
-                {
-                    categoryId = 3,
-                    item = Nova.man.item.GetItem(1528), //panneau gendarme mural
-                    price = 300,
-                },
-                new Life.UI.ItemShopDefinition()
-                {
-                    categoryId = 3,
-                    item = Nova.man.item.GetItem(1529), //panneau gendarme
-                    price = 250,
-                },
-                new Life.UI.ItemShopDefinition()
-                {
-                    categoryId = 3,
-                    item = Nova.man.item.GetItem(1562), //Néon panneau Police
-                    price = 350,
-                },
-                new Life.UI.ItemShopDefinition()
-                {
-                    categoryId = 3,
-                    item = Nova.man.item.GetItem(1563), //Néon panneau police mural
-                    price = 300,
-                },
-                new Life.UI.ItemShopDefinition()
-                {
-                    categoryId = 3,
-                    item = Nova.man.item.GetItem(1580), //Pied de biche
-                    price = 2000,
-                },
-                new Life.UI.ItemShopDefinition()
-                {
-                    categoryId = 3,
-                    item = Nova.man.item.GetItem(1626), //Plot de signalement
-                    price = 5,
-                },
-                new Life.UI.ItemShopDefinition()
-                {
-                    categoryId = 3,
-                    item = Nova.man.item.GetItem(1637), //Cinémomètre
-                    price = 2500,
-                },
             }, new string[]
             {
                 "Armes",
                 "Billet illégal",
                 "Drogue",
-                "Matériel"
-            }, "Restauration Police", player.setup.transform.position);
+            }, "Restauration Illégal", player.setup.transform.position);
         }
     }
 }

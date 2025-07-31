@@ -14,5 +14,6 @@ Elle regroupe les armes, drogues et billets, permettant de fournir les gangs et 
 ⚠️ Le développeur recommande de ne pas changer de terrain, que l’ID de l’entreprise reste "2", et que l’entreprise soit gérée par un administrateur pour des raisons de fonctionnement et de sécurité. ⚠️
 
 🔧 Ce plugin utilise un webhook afin de fournir des informations analytiques à son développeur.
+
 📌 Crédits :
 MediaGamings

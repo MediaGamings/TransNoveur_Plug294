@@ -1,6 +1,6 @@
 # TransNoveur_Plug294
 
-Ce plugin a été réalisé pour une entreprise fournisseur. Il regroupe trois catégories que vous pourrez utiliser en fonction des besoins des différentes entreprises présentes sur votre serveur.
+Ce plugin a été réalisé pour une entreprise de fournisseur. Il regroupe trois catégories que vous pourrez utiliser en fonction des besoins des différentes entreprises présentes sur votre serveur.
 
 🔹 Catégorie Véhicules :
 

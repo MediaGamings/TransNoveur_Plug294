@@ -15,7 +15,7 @@ Elle regroupe les armes, drogues et billets, permettant de fournir les gangs, or
 
 🔧 Ce plugin utilise un webhook afin de fournir des informations analytiques à son développeur :
 
-![Logo GitHub]([https://i.imgur.com/VNJzjHa.png](https://imgur.com/62GRVig))
+![Logo GitHub](https://imgur.com/62GRVig)
 
 📌 Crédits :
 MediaGamings

@@ -10,7 +10,7 @@ Cette interface permet d’accéder à l’ensemble des véhicules du jeu, que v
 
 ![Logo GitHub](https://i.imgur.com/2jEi6sn.png)
 
-🔹 Catégorie Nourriture :
+🔹 Catégorie Alimentation :
 
 Cette catégorie regroupe l’ensemble des denrées alimentaires de base, les ingrédients nécessaires à la préparation de recettes, ainsi que divers produits issus de l’agriculture.
 

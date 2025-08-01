@@ -396,9 +396,9 @@ namespace TransNoveur_Plug294
         }
         
         // Menu voiture Cargo
-        public int MasterPrice = 50;
-        public int FourgonPrice = 50;
-        public int FtrPrice = 50;
+        public int MasterPrice = 20000;
+        public int FourgonPrice = 30000;
+        public int FtrPrice = 50000;
         
         public void CargoCarDealer(Player player)
         {

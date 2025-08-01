@@ -1,21 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 using Life;
 using Life.DB;
 using Life.Network;
 using Life.UI;
 using UnityEngine;
 using Mirror;
-using InsaneSystems.RoadNavigator;
 using Life.CheckpointSystem;
 using Life.InventorySystem;
 using System.Reflection;
-using Life.VehicleSystem;
-using Debug = System.Diagnostics.Debug;
-using Object = UnityEngine.Object;
 using System.Net.Http;
 using Newtonsoft.Json;
 
@@ -341,49 +333,49 @@ namespace TransNoveur_Plug294
         public void NormaleCarDealer(Player player)
         {
             UIPanel normalecar = new UIPanel("Restauration voiture", UIPanel.PanelType.TabPrice);
-            normalecar.AddTabLine("Première", PremierePrice.ToString() + "€", GetVehicleIconId(0), ui =>
+            normalecar.AddTabLine("Renaud Express", ExpressPrice.ToString() + "€", GetVehicleIconId(16), ui =>
             {
-                Buy(player, PremierePrice, 0);
-            });
-            normalecar.AddTabLine("Berlingo", BerlingoPrice.ToString() + "€", GetVehicleIconId(8), ui =>
-            {
-                Buy(player, BerlingoPrice, 8);
-            });
-            normalecar.AddTabLine("Olympia A7", OlympiaPrice.ToString() + "€", GetVehicleIconId(10), ui =>
-            {
-                Buy(player, OlympiaPrice, 10);
-            });
-            normalecar.AddTabLine("Megane IV", MeganePrice.ToString() + "€", GetVehicleIconId(13), ui =>
-            {
-                Buy(player, MeganePrice, 13);
+                Buy(player, ExpressPrice, 16);
             });
             normalecar.AddTabLine("C4 Grand Picasso", PicassoPrice.ToString() + "€", GetVehicleIconId(15), ui =>
             {
                 Buy(player, PicassoPrice, 15);
             });
-            normalecar.AddTabLine("Renaud Express", ExpressPrice.ToString() + "€", GetVehicleIconId(16), ui =>
+            normalecar.AddTabLine("Berlingo", BerlingoPrice.ToString() + "€", GetVehicleIconId(8), ui =>
             {
-                Buy(player, ExpressPrice, 16);
+                Buy(player, BerlingoPrice, 8);
             });
-            normalecar.AddTabLine("Range River", RiverPrice.ToString() + "€", GetVehicleIconId(24), ui =>
+            normalecar.AddTabLine("Première", PremierePrice.ToString() + "€", GetVehicleIconId(0), ui =>
             {
-                Buy(player, RiverPrice, 24);
+                Buy(player, PremierePrice, 0);
             });
-            normalecar.AddTabLine("5008", PeagotPrice.ToString() + "€", GetVehicleIconId(41), ui =>
+            normalecar.AddTabLine("Megane IV", MeganePrice.ToString() + "€", GetVehicleIconId(13), ui =>
             {
-                Buy(player, PeagotPrice, 41);
+                Buy(player, MeganePrice, 13);
             });
             normalecar.AddTabLine("206", PaegoPrice.ToString() + "€", GetVehicleIconId(44), ui =>
             {
                 Buy(player, PaegoPrice, 44);
             });
-            normalecar.AddTabLine("Leaf Golfter", LeafPrcie.ToString() + "€", GetVehicleIconId(54), ui =>
+            normalecar.AddTabLine("5008", PeagotPrice.ToString() + "€", GetVehicleIconId(41), ui =>
             {
-                Buy(player, LeafPrcie, 54);
+                Buy(player, PeagotPrice, 41);
+            });
+            normalecar.AddTabLine("Range River", RiverPrice.ToString() + "€", GetVehicleIconId(24), ui =>
+            {
+                Buy(player, RiverPrice, 24);
+            });
+            normalecar.AddTabLine("Olympia A7", OlympiaPrice.ToString() + "€", GetVehicleIconId(10), ui =>
+            {
+                Buy(player, OlympiaPrice, 10);
             });
             normalecar.AddTabLine("Korn Ranger", Kornranger.ToString() + "€", GetVehicleIconId(56), ui =>
             {
                 Buy(player, Kornranger, 56);
+            });
+            normalecar.AddTabLine("Leaf Golfter", LeafPrcie.ToString() + "€", GetVehicleIconId(54), ui =>
+            {
+                Buy(player, LeafPrcie, 54);
             });
             normalecar.AddButton("<color=#f00020> Fermer </color>", ui =>
             {
@@ -467,21 +459,17 @@ namespace TransNoveur_Plug294
         public void CompanyCarDealer(Player player)
         {
             UIPanel companycar = new UIPanel("Restauration voiture", UIPanel.PanelType.TabPrice);
-            companycar.AddTabLine("Euro Lion", EuroLion.ToString() + "€", GetVehicleIconId(3), ui =>
+            companycar.AddTabLine("Kart", Kart.ToString() + "€", GetVehicleIconId(53), ui =>
             {
-                Buy(player, EuroLion, 3);
+                Buy(player, Kart, 53);
             });
-            companycar.AddTabLine("Master Police", MasterPolice.ToString() + "€", GetVehicleIconId(4), ui =>
+            companycar.AddTabLine("Express Pizza", ExpressPizza.ToString() + "€", GetVehicleIconId(51), ui =>
             {
-                Buy(player, MasterPolice, 4);
+                Buy(player, ExpressPizza, 5);
             });
-            companycar.AddTabLine("Master VSAV", MasterVsav.ToString() + "€", GetVehicleIconId(5), ui =>
+            companycar.AddTabLine("Berlingo Poste", BerlingoPoste.ToString() + "€", GetVehicleIconId(23), ui =>
             {
-                Buy(player, MasterVsav, 5);
-            });
-            companycar.AddTabLine("Megane IV Police", Meganeivpolice.ToString() + "€", GetVehicleIconId(6), ui =>
-            {
-                Buy(player, Meganeivpolice, 6);
+                Buy(player, BerlingoPoste, 23);
             });
             companycar.AddTabLine("Balayeuse", Balayeuse.ToString() + "€", GetVehicleIconId(7), ui =>
             {
@@ -491,9 +479,13 @@ namespace TransNoveur_Plug294
             {
                 Buy(player, Poubelle, 9);
             });
-            companycar.AddTabLine("Berlingo PN", BerlingoPn.ToString() + "€", GetVehicleIconId(11), ui =>
+            companycar.AddTabLine("Brinks", Brinks.ToString() + "€", GetVehicleIconId(25), ui =>
             {
-                Buy(player, BerlingoPn, 11);
+                Buy(player, Brinks, 25);
+            });
+            companycar.AddTabLine("Master DDE", MasterDde.ToString() + "€", GetVehicleIconId(37), ui =>
+            {
+                Buy(player, MasterDde, 37);
             });
             companycar.AddTabLine("Dépanneuse", Depanneuse.ToString() + "€", GetVehicleIconId(12), ui =>
             {
@@ -503,53 +495,53 @@ namespace TransNoveur_Plug294
             {
                 Buy(player, WildTownTruck, 60);
             });
-            companycar.AddTabLine("Olympia A7 IGPN", OlympiaIgpn.ToString() + "€", GetVehicleIconId(18), ui =>
+            companycar.AddTabLine("Euro Lion", EuroLion.ToString() + "€", GetVehicleIconId(3), ui =>
             {
-                Buy(player, OlympiaIgpn, 18);
-            });
-            companycar.AddTabLine("Berlingo Poste", BerlingoPoste.ToString() + "€", GetVehicleIconId(23), ui =>
-            {
-                Buy(player, BerlingoPoste, 23);
-            });
-            companycar.AddTabLine("Brinks", Brinks.ToString() + "€", GetVehicleIconId(25), ui =>
-            {
-                Buy(player, Brinks, 25);
-            });
-            companycar.AddTabLine("Master SAMU", MasterSamu.ToString() + "€", GetVehicleIconId(27), ui =>
-            {
-                Buy(player, MasterSamu, 27);
-            });
-            companycar.AddTabLine("Olympia A7 Unmarked", OlympiaUnmarked.ToString() + "€", GetVehicleIconId(34), ui =>
-            {
-                Buy(player, OlympiaUnmarked, 34);
+                Buy(player, EuroLion, 3);
             });
             companycar.AddTabLine("Fast Scoler", FastScoler.ToString() + "€", GetVehicleIconId(36), ui =>
             {
                 Buy(player, FastScoler, 36);
             });
-            companycar.AddTabLine("Master DDE", MasterDde.ToString() + "€", GetVehicleIconId(37), ui =>
+            companycar.AddTabLine("5008 SAMU", PeagoSamu.ToString() + "€", GetVehicleIconId(46), ui =>
             {
-                Buy(player, MasterDde, 37);
+                Buy(player, PeagoSamu, 46);
+            });
+            companycar.AddTabLine("Master SAMU", MasterSamu.ToString() + "€", GetVehicleIconId(27), ui =>
+            {
+                Buy(player, MasterSamu, 27);
+            });
+            companycar.AddTabLine("Master VSAV", MasterVsav.ToString() + "€", GetVehicleIconId(5), ui =>
+            {
+                Buy(player, MasterVsav, 5);
+            });
+            companycar.AddTabLine("Berlingo PN", BerlingoPn.ToString() + "€", GetVehicleIconId(11), ui =>
+            {
+                Buy(player, BerlingoPn, 11);
+            });
+            companycar.AddTabLine("Megane IV Police", Meganeivpolice.ToString() + "€", GetVehicleIconId(6), ui =>
+            {
+                Buy(player, Meganeivpolice, 6);
             });
             companycar.AddTabLine("5008 PN", PeagoPn.ToString() + "€", GetVehicleIconId(42), ui =>
             {
                 Buy(player, PeagoPn, 42);
             });
+            companycar.AddTabLine("Master Police", MasterPolice.ToString() + "€", GetVehicleIconId(4), ui =>
+            {
+                Buy(player, MasterPolice, 4);
+            });
+            companycar.AddTabLine("Olympia A7 Unmarked", OlympiaUnmarked.ToString() + "€", GetVehicleIconId(34), ui =>
+            {
+                Buy(player, OlympiaUnmarked, 34);
+            });
             companycar.AddTabLine("5008 IGPN", PeagoIgpn.ToString() + "€", GetVehicleIconId(43), ui =>
             {
                 Buy(player, PeagoIgpn, 43);
             });
-            companycar.AddTabLine("5008 SAMU", PeagoSamu.ToString() + "€", GetVehicleIconId(46), ui =>
+            companycar.AddTabLine("Olympia A7 IGPN", OlympiaIgpn.ToString() + "€", GetVehicleIconId(18), ui =>
             {
-                Buy(player, PeagoSamu, 46);
-            });
-            companycar.AddTabLine("Express Pizza", ExpressPizza.ToString() + "€", GetVehicleIconId(51), ui =>
-            {
-                Buy(player, ExpressPizza, 5);
-            });
-            companycar.AddTabLine("Kart", Kart.ToString() + "€", GetVehicleIconId(53), ui =>
-            {
-                Buy(player, Kart, 53);
+                Buy(player, OlympiaIgpn, 18);
             });
             companycar.AddButton("<color=#f00020> Fermer </color>", ui =>
             {
@@ -579,25 +571,25 @@ namespace TransNoveur_Plug294
         public void LuxuryCarDealer(Player player)
         {
             UIPanel luxurycar = new UIPanel("Restauration voiture", UIPanel.PanelType.TabPrice);
-            luxurycar.AddTabLine("Limousine", LimoPrice.ToString() + "€", GetVehicleIconId(2), ui =>
+            luxurycar.AddTabLine("V Model S", ModelsPrice.ToString() + "€", GetVehicleIconId(40), ui =>
             {
-                Buy(player,  LimoPrice, 2);
-            });
-            luxurycar.AddTabLine("RX7", RxPrice.ToString() + "€", GetVehicleIconId(14), ui =>
-            {
-                Buy(player, RxPrice, 14);
+                Buy(player, ModelsPrice, 40);
             });
             luxurycar.AddTabLine("Stellar Coupé", StellarcoupePrice.ToString() + "€", GetVehicleIconId(28), ui =>
             {
                 Buy(player, StellarcoupePrice, 28);
             });
-            luxurycar.AddTabLine("V Model S", ModelsPrice.ToString() + "€", GetVehicleIconId(40), ui =>
+            luxurycar.AddTabLine("RX7", RxPrice.ToString() + "€", GetVehicleIconId(14), ui =>
             {
-                Buy(player, ModelsPrice, 40);
+                Buy(player, RxPrice, 14);
             });
             luxurycar.AddTabLine("Stellar 911 RS", StellarsportPrice.ToString() + "€", GetVehicleIconId(55), ui =>
             {
                 Buy(player, StellarsportPrice, 55);
+            });
+            luxurycar.AddTabLine("Limousine", LimoPrice.ToString() + "€", GetVehicleIconId(2), ui =>
+            {
+                Buy(player,  LimoPrice, 2);
             });
             luxurycar.AddButton("<color=#f00020> Fermer </color>", ui =>
             {
@@ -625,6 +617,10 @@ namespace TransNoveur_Plug294
         public void StarCarDealer(Player player)
         {
             UIPanel starcar = new UIPanel("Restauration voiture", UIPanel.PanelType.TabPrice);
+            starcar.AddTabLine("Dodge Charger", DodgeCharger.ToString() + "€", GetVehicleIconId(35), ui =>
+            {
+                Buy(player, DodgeCharger, 35);
+            });
             starcar.AddTabLine("Delorean", Delorean.ToString() + "€", GetVehicleIconId(22), ui =>
             {
                 Buy(player, Delorean, 22);
@@ -632,10 +628,6 @@ namespace TransNoveur_Plug294
             starcar.AddTabLine("Delorean BTTF", DeloreanBttf.ToString() + "€", GetVehicleIconId(33), ui =>
             {
                 Buy(player, DeloreanBttf, 33);
-            });
-            starcar.AddTabLine("Dodge Charger", DodgeCharger.ToString() + "€", GetVehicleIconId(35), ui =>
-            {
-                Buy(player, DodgeCharger, 35);
             });
             starcar.AddButton("<color=#f00020> Fermer </color>", ui =>
             {
@@ -662,21 +654,27 @@ namespace TransNoveur_Plug294
             {
                 new Life.UI.ItemShopDefinition()
                 {
-                    categoryId = 1,
-                    item = Nova.man.item.GetItem(1), //Steak
-                    price = 2.5,
+                    categoryId = 0,
+                    item = Nova.man.item.GetItem(136), //Water
+                    price = 1,
                 },
                 new Life.UI.ItemShopDefinition()
                 {
-                    categoryId = 1,
-                    item = Nova.man.item.GetItem(2), //Nugget
-                    price = 1.25,
+                    categoryId = 0,
+                    item = Nova.man.item.GetItem(1079), //Coffee
+                    price = 1,
                 },
                 new Life.UI.ItemShopDefinition()
                 {
-                    categoryId = 1,
-                    item = Nova.man.item.GetItem(27), //Soda
-                    price = 2,
+                    categoryId = 0,
+                    item = Nova.man.item.GetItem(138), //Appel
+                    price = 1.5,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 0,
+                    item = Nova.man.item.GetItem(139), //Peer
+                    price = 1.5,
                 },
                 new Life.UI.ItemShopDefinition()
                 {
@@ -693,163 +691,157 @@ namespace TransNoveur_Plug294
                 new Life.UI.ItemShopDefinition()
                 {
                     categoryId = 0,
-                    item = Nova.man.item.GetItem(136), //Water
-                    price = 1,
-                },
-                new Life.UI.ItemShopDefinition()
-                {
-                    categoryId = 0,
                     item = Nova.man.item.GetItem(137), //Cheese
                     price = 2,
                 },
                 new Life.UI.ItemShopDefinition()
                 {
-                    categoryId = 0,
-                    item = Nova.man.item.GetItem(138), //Appel
-                    price = 1.5,
-                },
-                new Life.UI.ItemShopDefinition()
-                {
-                    categoryId = 0,
-                    item = Nova.man.item.GetItem(139), //Peer
-                    price = 1.5,
-                },
-                new Life.UI.ItemShopDefinition()
-                {
                     categoryId = 1,
-                    item = Nova.man.item.GetItem(140), //Pizza
-                    price = 8,
-                },
-                new Life.UI.ItemShopDefinition()
-                {
-                    categoryId = 1,
-                    item = Nova.man.item.GetItem(141), //Fries
-                    price = 3,
-                },
-                new Life.UI.ItemShopDefinition()
-                {
-                    categoryId = 0,
-                    item = Nova.man.item.GetItem(1079), //Coffee
-                    price = 1,
-                },
-                new Life.UI.ItemShopDefinition()
-                {
-                    categoryId = 2,
-                    item = Nova.man.item.GetItem(1093), //Grappes
-                    price = 2,
-                },
-                new Life.UI.ItemShopDefinition()
-                {
-                    categoryId = 2,
-                    item = Nova.man.item.GetItem(1439), //Strawberry
-                    price = 1.5,
-                },
-                new Life.UI.ItemShopDefinition()
-                {
-                    categoryId = 2,
-                    item = Nova.man.item.GetItem(1440), //Strawberry Seed
-                    price = 1,
-                },
-                new Life.UI.ItemShopDefinition()
-                {
-                    categoryId = 3,
                     item = Nova.man.item.GetItem(1449), //Flour
                     price = 1.5,
                 },
                 new Life.UI.ItemShopDefinition()
                 {
-                    categoryId = 3,
+                    categoryId = 1,
                     item = Nova.man.item.GetItem(1450), //Yeast
                     price = 1,
                 },
                 new Life.UI.ItemShopDefinition()
                 {
-                    categoryId = 3,
+                    categoryId = 1,
                     item = Nova.man.item.GetItem(1451), //Milk
                     price = 1,
                 },
                 new Life.UI.ItemShopDefinition()
                 {
-                    categoryId = 3,
+                    categoryId = 1,
                     item = Nova.man.item.GetItem(1452), //sugar
                     price = 2.5,
                 },
                 new Life.UI.ItemShopDefinition()
                 {
-                    categoryId = 3,
+                    categoryId = 1,
                     item = Nova.man.item.GetItem(1453), //Salt
                     price = 2.5,
                 },
                 new Life.UI.ItemShopDefinition()
                 {
-                    categoryId = 3,
+                    categoryId = 1,
                     item = Nova.man.item.GetItem(1454), //Chocolate
                     price = 1,
                 },
                 new Life.UI.ItemShopDefinition()
                 {
-                    categoryId = 3,
+                    categoryId = 1,
                     item = Nova.man.item.GetItem(1504), //Egg
                     price = 1,
                 },
                 new Life.UI.ItemShopDefinition()
                 {
-                    categoryId = 2,
-                    item = Nova.man.item.GetItem(1505), //Tomato
-                    price = 1.5,
-                },
-                new Life.UI.ItemShopDefinition()
-                {
                     categoryId = 1,
-                    item = Nova.man.item.GetItem(1506), //Letuce
-                    price = 1,
-                },
-                new Life.UI.ItemShopDefinition()
-                {
-                    categoryId = 1,
-                    item = Nova.man.item.GetItem(1507), //Burger bun
-                    price = 1.5,
-                },
-                new Life.UI.ItemShopDefinition()
-                {
-                    categoryId = 1,
-                    item = Nova.man.item.GetItem(1508), //Burger bun
-                    price = 1,
-                },
-                new Life.UI.ItemShopDefinition()
-                {
-                    categoryId = 1,
-                    item = Nova.man.item.GetItem(1510), //Mustard
-                    price = 1,
-                },
-                new Life.UI.ItemShopDefinition()
-                {
-                    categoryId = 1,
-                    item = Nova.man.item.GetItem(1511), //Pickle
-                    price = 1,
-                },
-                new Life.UI.ItemShopDefinition()
-                {
-                    categoryId = 3,
                     item = Nova.man.item.GetItem(1566), //Butter
                     price = 1,
                 },
                 new Life.UI.ItemShopDefinition()
                 {
                     categoryId = 2,
-                    item = Nova.man.item.GetItem(1720),
+                    item = Nova.man.item.GetItem(27), //Soda
+                    price = 2,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 2,
+                    item = Nova.man.item.GetItem(2), //Nugget
+                    price = 1.25,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 2,
+                    item = Nova.man.item.GetItem(141), //Fries
+                    price = 3,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 2,
+                    item = Nova.man.item.GetItem(140), //Pizza
+                    price = 8,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 2,
+                    item = Nova.man.item.GetItem(1508), //Burger bun
+                    price = 1,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 2,
+                    item = Nova.man.item.GetItem(1507), //Burger bun
+                    price = 1.5,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 2,
+                    item = Nova.man.item.GetItem(1), //Steak
+                    price = 2.5,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 2,
+                    item = Nova.man.item.GetItem(1506), //Letuce
+                    price = 1,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 2,
+                    item = Nova.man.item.GetItem(1510), //Mustard
+                    price = 1,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 2,
+                    item = Nova.man.item.GetItem(1511), //Pickle
+                    price = 1,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 3,
+                    item = Nova.man.item.GetItem(1093), //Grappes
+                    price = 2,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 3,
+                    item = Nova.man.item.GetItem(1439), //Strawberry
+                    price = 1.5,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 3,
+                    item = Nova.man.item.GetItem(1440), //Strawberry Seed
+                    price = 1,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 3,
+                    item = Nova.man.item.GetItem(1505), //Tomato
+                    price = 1.5,
+                },
+                new Life.UI.ItemShopDefinition()
+                {
+                    categoryId = 3,
+                    item = Nova.man.item.GetItem(1720), //Tomato Seed
                     price = 1.50,
                 }
             }, new string[] 
             {
                 "Normale",
+                "Cuisine",
                 "Fast Food",
-                "Agriculture",
-                "Cuisine"
+                "Agriculture"
             }, "Restauration Nourriture", player.setup.transform.position);
         }
         
-        // Menu Objet Principale
+        // Menu Illegal
         public void IllegalMenu(Player player)
         {
             player.ShowShopUI(new Life.UI.ItemShopDefinition[] 

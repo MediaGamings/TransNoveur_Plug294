@@ -1,3 +1,5 @@
+![GitHub all releases](https://img.shields.io/github/downloads/MediaGamings/TransNoveur_Plug294/total)
+
 # TransNoveur_Plug294
 
 Ce plugin a été réalisé pour une entreprise de fournisseur. Il regroupe trois catégories que vous pourrez utiliser en fonction des besoins des différentes entreprises présentes sur votre serveur.
@@ -23,6 +25,8 @@ Cette catégorie inclut les armes, substances illégales et billets, destinés �
 🔹 Afin d’utiliser le plugin, vous devez être membre de l’entreprise ayant l’identifiant n°2, et le terrain associé doit porter le numéro 173. Une fois ces conditions remplies, appuyez sur la touche « = » de votre clavier pour accéder au menu principal.
 
 # A savoir
+
+🔧 En cas de problème lié au fonctionnement du plugin, n’hésitez pas à me contacter pour assistance.
 
 🔧 Ce plugin utilise un webhook afin de fournir des informations analytiques à son développeur :
 

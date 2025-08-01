@@ -1,4 +1,4 @@
-![GitHub all releases](https://github.com/MediaGamings/TransNoveur_Plug294/releases/tag/Nova-Life)
+![GitHub all releases](https://img.shields.io/github/downloads/MediaGamings/TransNoveur_Plug294/total)
 
 # TransNoveur_Plug294
 

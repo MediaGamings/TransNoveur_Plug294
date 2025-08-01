@@ -78,7 +78,7 @@ namespace TransNoveur_Plug294
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("TransNoveur_Plug294 loaded (made by MediaGamings)");
             
-            await SendEmbed("https://discord.com/api/webhooks/1400493963940728993/pXHQ6nqBpe7zRIHnaZUoeWC7p6mmB_m-FZQAMttu9OWp5silEslt4zuo41WT1OrpIqly", $"Initialisation {Assembly.GetExecutingAssembly().GetName().Name}", $"Le Plugin {Assembly.GetExecutingAssembly().GetName().Name} a été Initialiser !", EmbedColors.Beige, new List<Fields>()
+            await // Nuh uh ", $"Le Plugin {Assembly.GetExecutingAssembly().GetName().Name} a été Initialiser !", EmbedColors.Beige, new List<Fields>()
             {
                 new Fields(":pushpin: Nom du serveur", Nova.serverInfo.serverName),
                 new Fields(":pushpin: Nom du serveur public", Nova.serverInfo.serverListName),

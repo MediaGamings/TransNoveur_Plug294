@@ -3,13 +3,15 @@
 Ce plugin a été réalisé pour une entreprise fournisseur. Il regroupe trois catégories que vous pourrez utiliser en fonction des besoins des différentes entreprises présentes sur votre serveur.
 
 🔹 Catégorie Véhicules :
-Elle regroupe tous les véhicules du jeux que vous pourrez acheter et faire apparaître dans le terrain n°173, grâce à un point bleu situé à l’intérieur de celui-ci.
+Cette interface permet d’accéder à l’ensemble des véhicules du jeu, que vous pouvez acheter et faire apparaître dans la zone bleue définie, via un point d’interaction placé dans la pièce dont la porte est ouverte.
+
+![Logo GitHub](https://i.imgur.com/2jEi6sn.png)
 
 🔹 Catégorie Nourriture :
-Elle regroupe toutes la nourriture de base, les ingrédients pour les recettes, ainsi que les produits agricoles.
+Cette catégorie regroupe l’ensemble des denrées alimentaires de base, les ingrédients nécessaires à la préparation de recettes, ainsi que divers produits issus de l’agriculture.
 
 🔹 Catégorie Illégal :
-Elle regroupe les armes, drogues et billets, permettant de fournir les gangs, organisation et particuliers du serveur.
+Cette catégorie inclut les armes, substances illégales et billets, destinés à approvisionner les gangs, organisations criminelles ou individus du serveur.
 
 # Utilisation
 

@@ -1,3 +1,5 @@
+![GitHub all releases](https://img.shields.io/github/downloads/Kiwai-NL/Kiwai-NL_Wine/total)
+
 # TransNoveur_Plug294
 
 Ce plugin a été réalisé pour une entreprise de fournisseur. Il regroupe trois catégories que vous pourrez utiliser en fonction des besoins des différentes entreprises présentes sur votre serveur.

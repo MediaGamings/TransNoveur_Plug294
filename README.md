@@ -17,7 +17,9 @@ Elle regroupe les armes, drogues et billets, permettant de fournir les gangs, or
 
 🔹 Afin d’utiliser le plugin, vous devez être membre de l’entreprise ayant l’identifiant n°2, et le terrain associé doit porter le numéro 173. Une fois ces conditions remplies, appuyez sur la touche « = » de votre clavier pour accéder au menu principal.
 
-# 🔧 Ce plugin utilise un webhook afin de fournir des informations analytiques à son développeur :
+# A savoir
+
+🔧 Ce plugin utilise un webhook afin de fournir des informations analytiques à son développeur :
 
 ![Logo GitHub](https://i.imgur.com/62GRVig.png)
 

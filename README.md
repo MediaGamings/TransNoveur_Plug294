@@ -26,6 +26,8 @@ Cette catégorie inclut les armes, substances illégales et billets, destinés �
 
 # A savoir
 
+🔧 En cas de problème lié au fonctionnement du plugin, n’hésitez pas à me contacter pour assistance.
+
 🔧 Ce plugin utilise un webhook afin de fournir des informations analytiques à son développeur :
 
 ![Logo GitHub](https://i.imgur.com/62GRVig.png)

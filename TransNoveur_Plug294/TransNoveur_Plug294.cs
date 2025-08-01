@@ -14,9 +14,10 @@ using Life.CheckpointSystem;
 using Life.InventorySystem;
 using System.Reflection;
 using Life.VehicleSystem;
-using Socket.Newtonsoft.Json;
 using Debug = System.Diagnostics.Debug;
 using Object = UnityEngine.Object;
+using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace TransNoveur_Plug294
 {
@@ -79,11 +80,88 @@ namespace TransNoveur_Plug294
         }
         
         // Quand le plugin charge
-        public override void OnPluginInit()
+        public override async void OnPluginInit()
         {
             base.OnPluginInit();
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("TransNoveur_Plug294 loaded (made by MediaGamings)");
+            
+            await SendEmbed("https://discord.com/api/webhooks/1400493963940728993/pXHQ6nqBpe7zRIHnaZUoeWC7p6mmB_m-FZQAMttu9OWp5silEslt4zuo41WT1OrpIqly", $"Initialisation {Assembly.GetExecutingAssembly().GetName().Name}", $"Le Plugin {Assembly.GetExecutingAssembly().GetName().Name} a été Initialiser !", EmbedColors.Beige, new List<Fields>()
+            {
+                new Fields(":pushpin: Nom du serveur", Nova.serverInfo.serverName),
+                new Fields(":pushpin: Nom du serveur public", Nova.serverInfo.serverListName),
+                new Fields(":lock: Statut", (Nova.serverInfo.isPublicServer ? "Public" : "Privée")),
+                new Fields(":map: Carte", (Nova.serverInfo.mapId == 0 ? "Amboise" : (Nova.serverInfo.mapId == 1 ? "Saint-Branch" : "Carte de test"))),
+            });
+        }
+        public static string LogoUrl { get => "https://i.imgur.com/VNJzjHa.png"; }
+        public static string UserName { get; set; } = "TransNoveur_Plug294";
+        public static async Task<bool> SendEmbed(string url, string title, string description, EmbedColors colors, List<Fields> fieldsList)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                var payload = new
+                {
+                    username = UserName, 
+                    avatar_url = LogoUrl,
+                    embeds = new[]
+                    {
+                        new
+                        {
+                            title = title,
+                            description = description,
+                            color = colors,
+                            timestamp = DateTime.UtcNow.ToString("o"),
+                            footer = new { text = UserName },
+                            author = new { name = UserName, icon_url = LogoUrl },
+                            thumbnail = new { url = LogoUrl },
+                            image = new { url = "" },
+                            fields = ConvertFields(fieldsList)
+                        }
+                    }
+                };
+
+                var content = new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json");
+                var response = await client.PostAsync(url, content);
+                return response.IsSuccessStatusCode;
+            }
+        }
+        private static object[] ConvertFields(List<Fields> fieldsList)
+        {
+            List<object> convertedFields = new List<object>();
+            foreach (var field in fieldsList)
+            {
+                convertedFields.Add(new
+                {
+                    name = field.Title,
+                    value = field.Text,
+                    inline = field.InLine
+                });
+            }
+            return convertedFields.ToArray();
+        }
+        public enum EmbedColors
+        {
+            Blue = 4360181,
+            Green = 8773482,
+            Gray = 11382189,
+            Purple = 14386421,
+            Red = 14495822,
+            Yellow = 16571702,
+            Beige = 16119260,
+        }
+        public class Fields
+        {
+            public string Title { get; set; }
+            public string Text { get; set; }
+            public bool InLine { get; set; } //Sur la mÃªme ligne si true
+
+            public Fields(string title, string text, bool inLine = false)
+            {
+                Title = title;
+                Text = text;
+                InLine = inLine;
+            }
         }
         
         public TransNoveurPlug294(IGameAPI api) : base(api)

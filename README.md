@@ -18,7 +18,7 @@ Cette catégorie inclut les armes, substances illégales et billets, destinés �
 
 # Utilisation
 
-⚠️ Le développeur recommande de ne pas changer de terrain, que l’ID de l’entreprise soie la 2ème => "ID = 2", et que l’entreprise soit gérée par un administrateur pour des raisons de fonctionnement et de sécurité.
+⚠️ Pour assurer le bon fonctionnement et la sécurité du plugin, il est fortement recommandé de ne pas modifier l’identifiant de l’entreprise ni le numéro de terrain. Il est également conseillé que l’entreprise soit gérée par un administrateur.
 
 🔹 Afin d’utiliser le plugin, vous devez être membre de l’entreprise ayant l’identifiant n°2, et le terrain associé doit porter le numéro 173. Une fois ces conditions remplies, appuyez sur la touche « = » de votre clavier pour accéder au menu principal.
 

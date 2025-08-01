@@ -203,10 +203,10 @@ namespace TransNoveur_Plug294
         }
 
         // Menu d'achat et spawn véhicule
-        public void Buy(Player player, int price, int vehiculemodelID)
+        public void Buy(Player player, int price, int vehicleModelId)
         {
             var panel = new UIPanel("Achat de voiture", UIPanel.PanelType.Input);
-            var vehicleName = Nova.v.vehicleModels[vehiculemodelID].VehicleName;
+            var vehicleName = Nova.v.vehicleModels[vehicleModelId].VehicleName;
             panel.SetText($"Quel quantité de {vehicleName} souhaitez-vous acheter ? (Prix unitaire: {price}€)");
             panel.SetInputPlaceholder("Quantité : ");
             panel.AddButton("<color=#24a424> Acheter </color>", ui =>
@@ -224,7 +224,7 @@ namespace TransNoveur_Plug294
                         return;
                     }
                     player.AddMoney(-quantity * price, "Achat de la voiture");
-                    LifeDB.CreateVehicle(vehiculemodelID, JsonConvert.SerializeObject(new Life.PermissionSystem.Permissions()
+                    LifeDB.CreateVehicle(vehicleModelId, JsonConvert.SerializeObject(new Life.PermissionSystem.Permissions()
                     {
                         owner = new Life.PermissionSystem.Entity()
                         {

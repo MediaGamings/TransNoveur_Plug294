@@ -32,41 +32,37 @@ namespace TransNoveur_Plug294
 
         // Pour obtenir les icon Item/Véhicule
         private static List<int> IconExceptions { get; set; } = new List<int> { 1, 2, 29, 30, 31 };
-        private static int GetItemIconId(int itemId)
+        public static int GetItemIconId(int itemId)
         {
-            Item item = LifeManager.instance.item.GetItem(itemId);
+            var item = Nova.man.item.GetItem(itemId);
             if (item == null)
                 return -1;
-            Sprite sprite = null;
-            if (item.models != null && item.models.Count > 0)
+            int iconId = 0;
+            if (item is Food)
             {
-                sprite = item.models.FirstOrDefault(obj => obj?.icon != null)?.icon;
+                var food = item as Food;
+                var icon = food.rawSprite;
+                iconId = Array.IndexOf(Nova.man.newIcons.ToArray(), icon);
             }
-            Food food = null;
-            bool isFood = false;
-            if (sprite == null)
+            else
             {
-                food = item as Food;
-                isFood = food != null;
+                var icon = item.models.FirstOrDefault(obj => obj?.icon != null)?.icon;
+                iconId = Array.IndexOf(Nova.man.newIcons.ToArray(), icon);
             }
-            if (isFood)
-                sprite = food.cookedSprite;
-            if (sprite == null)
+            if (iconId > 0)
+                return iconId;
+            else
                 return -1;
-            int index = Array.IndexOf(LifeManager.instance.newIcons.ToArray(), sprite);
-            if (IconExceptions.Contains(itemId))
-                return -1;
-            return index >= 0 ? index : -1;
         }
 
-        private static int GetVehicleIconId(int modelId)
+        public static int GetVehicleIconId(int modelId)
         {
-            Life.VehicleSystem.Vehicle vehicleModel = Nova.v.vehicleModels[modelId];
-            if (vehicleModel.Icon == null)
+            var model = Nova.v.vehicleModels[modelId];
+            if (model.Icon == null)
                 return -1;
-            int index = LifeManager.instance.newIcons.IndexOf(vehicleModel.Icon);
-            if (index > 0)
-                return index;
+            var iconId = Array.IndexOf(Nova.man.newIcons.ToArray(), model.Icon);
+            if (iconId > 0)
+                return iconId;
             else
                 return -1;
         }
@@ -134,12 +130,6 @@ namespace TransNoveur_Plug294
         }
         public enum EmbedColors
         {
-            Blue = 4360181,
-            Green = 8773482,
-            Gray = 11382189,
-            Purple = 14386421,
-            Red = 14495822,
-            Yellow = 16571702,
             Beige = 16119260,
         }
         public class Fields

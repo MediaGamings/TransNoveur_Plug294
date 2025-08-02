@@ -23,9 +23,12 @@ namespace TransNoveur_Plug294
             {
                 player.Notify("Information", "Le plugin TransNoveur_Plug294 se trouve sur ce serveur.");
             }
-            var point = new NCheckpoint(player.netId, new Vector3(262.8445f, 50.21f, 992.6866f), checkpoint =>
+            var point = new NCheckpoint(player.netId, config.GetPointPosition(), checkpoint =>
             {
-                Garage(player);
+                if (player.character.BizId == config.bizId)
+                    Garage(player);
+                else
+                    player.Notify("Garage", "Vous n'avez pas l'autorisation d'ouvrir ce garage.", NotificationManager.Type.Error);
             });
             player.CreateCheckpoint(point);
         }
@@ -73,77 +76,18 @@ namespace TransNoveur_Plug294
             base.OnPluginInit();
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("TransNoveur_Plug294 loaded (made by MediaGamings)");
-            
-            await SendEmbed(Program.EmbedURL, $"Initialisation {Assembly.GetExecutingAssembly().GetName().Name}", $"Le Plugin {Assembly.GetExecutingAssembly().GetName().Name} a été Initialiser !", EmbedColors.Beige, new List<Fields>()
-            {
-                new Fields(":pushpin: Nom du serveur", Nova.serverInfo.serverName),
-                new Fields(":pushpin: Nom du serveur public", Nova.serverInfo.serverListName),
-                new Fields(":lock: Statut", (Nova.serverInfo.isPublicServer ? "Public" : "Privée")),
-                new Fields(":map: Carte", (Nova.serverInfo.mapId == 0 ? "Amboise" : (Nova.serverInfo.mapId == 1 ? "Saint-Branch" : "Carte de test"))),
-            });
-        }
-        public static string LogoUrl { get => "https://i.imgur.com/VNJzjHa.png"; }
-        public static string UserName { get; set; } = "TransNoveur_Plug294";
-        public static async Task<bool> SendEmbed(string url, string title, string description, EmbedColors colors, List<Fields> fieldsList)
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                var payload = new
-                {
-                    username = UserName, 
-                    avatar_url = LogoUrl,
-                    embeds = new[]
-                    {
-                        new
-                        {
-                            title = title,
-                            description = description,
-                            color = colors,
-                            timestamp = DateTime.UtcNow.ToString("o"),
-                            footer = new { text = UserName },
-                            author = new { name = UserName, icon_url = LogoUrl },
-                            thumbnail = new { url = LogoUrl },
-                            image = new { url = "" },
-                            fields = ConvertFields(fieldsList)
-                        }
-                    }
-                };
 
-                var content = new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json");
-                var response = await client.PostAsync(url, content);
-                return response.IsSuccessStatusCode;
-            }
-        }
-        public static object[] ConvertFields(List<Fields> fieldsList)
-        {
-            List<object> convertedFields = new List<object>();
-            foreach (var field in fieldsList)
+            directoryPath = Path.Combine(pluginsPath, Assembly.GetExecutingAssembly().GetName().Name); //Initialisation du chemin du Plugin
+            configPath = Path.Combine(directoryPath, "config.json");
+            if (!Directory.Exists(directoryPath))
+                Directory.CreateDirectory(directoryPath);
+            if (!File.Exists(configPath))
             {
-                convertedFields.Add(new
-                {
-                    name = field.Title,
-                    value = field.Text,
-                    inline = field.InLine
-                });
+                config = new Config();
+                File.WriteAllText(configPath, JsonConvert.SerializeObject(config, Formatting.Indented));
             }
-            return convertedFields.ToArray();
-        }
-        public enum EmbedColors
-        {
-            Beige = 16119260,
-        }
-        public class Fields
-        {
-            public string Title { get; set; }
-            public string Text { get; set; }
-            public bool InLine { get; set; } //Sur la mÃªme ligne si true
-
-            public Fields(string title, string text, bool inLine = false)
-            {
-                Title = title;
-                Text = text;
-                InLine = inLine;
-            }
+            else
+                config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(configPath));
         }
         
         public TransNoveurPlug294(IGameAPI api) : base(api)
@@ -158,12 +102,23 @@ namespace TransNoveur_Plug294
             {
                 MainMenu(player);
             }
+            
+            base.OnPluginInit();
+            directoryPath = Path.Combine(pluginsPath, Assembly.GetExecutingAssembly().GetName().Name); //Initialisation du chemin du Plugin
+            configPath = Path.Combine(directoryPath, "config.json");
+            if (!File.Exists(configPath))
+            {
+                config = new Config();
+                File.WriteAllText(configPath, JsonConvert.SerializeObject(config));
+            }
+            else
+                config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(configPath));
         }
         
         // Menu Principale
         public void MainMenu(Player player)
         {
-            if (player.character.BizId == 2)
+            if (player.character.BizId == config.bizId && player.character.BizId > 0 || player.account.adminLevel > 0)
             {
                 UIPanel mainmenu = new UIPanel("Menu Restauration", UIPanel.PanelType.TabPrice);
                 mainmenu.AddTabLine("Voiture", "", GetVehicleIconId(1), ui =>
@@ -177,6 +132,13 @@ namespace TransNoveur_Plug294
                 mainmenu.AddTabLine("Illégal", "", GetItemIconId(6), ui =>
                 {
                     IllegalMenu(player);
+                });
+                mainmenu.AddTabLine("Configuration", "", GetItemIconId(1741), ui =>
+                {
+                    if (player.account.adminLevel > 0)
+                        ConfigMenu(player);
+                    else
+                        player.Notify("Configuration", "Vous n'avez pas l'autorisation de configurée le plugin.", NotificationManager.Type.Error, 3);
                 });
                 mainmenu.AddButton("<color=#f00020> Fermé </color>", ui =>
                 {
@@ -213,7 +175,7 @@ namespace TransNoveur_Plug294
                         player.Notify("Menu", "Vous n'avez pas assez d'argent.", NotificationManager.Type.Error);
                         return;
                     }
-                    player.AddMoney(-quantity * price, "Achat de la voiture");
+                    player.AddMoney(-quantity * price, "Achat du véhicule");
                     LifeDB.CreateVehicle(vehiculeModelID, JsonConvert.SerializeObject(new Life.PermissionSystem.Permissions()
                     {
                         owner = new Life.PermissionSystem.Entity()
@@ -249,7 +211,7 @@ namespace TransNoveur_Plug294
             {
                 garage.AddTabLine(Nova.v.vehicleModels[vehicle.modelId].VehicleName, "", GetVehicleIconId(vehicle.modelId), ui =>
                 {
-                    Nova.v.UnstowVehicle(vehicle.vehicleId, new Vector3(269.4228f, 50.26678f, 992.7704f), Quaternion.Euler(-7.113395E-05f, 190.9756f, -4.949392E-05f));
+                    Nova.v.UnstowVehicle(vehicle.vehicleId, config.GetSpawnPosition(), config.GetSpawnRotation());
                     player.Notify("Garage", "Le véhicule est sorti.", NotificationManager.Type.Success);
                 });
             }
@@ -950,6 +912,81 @@ namespace TransNoveur_Plug294
                 "Billet illégal",
                 "Drogue",
             }, "Restauration Illégal", player.setup.transform.position);
+        }
+        
+        // Menu Config
+        public string directoryPath; //Chemin du Plugin
+        public string configPath; //Chemin de la Config
+        public Config config; //Configuration
+        
+        public void ConfigMenu(Player player)
+        {
+            UIPanel configuration = new UIPanel("Configuration du plugin", UIPanel.PanelType.TabPrice);
+            configuration.AddTabLine("Point Bleu", "",GetItemIconId(1306), ui =>
+            {
+                foreach (var point in Nova.server.checkpoints)
+                {
+                    if (point.position == config.GetPointPosition())
+                    {
+                        foreach (var targetPlayer in Nova.server.Players.Where(obj => obj.isSpawned == true).ToList())
+                        {
+                            targetPlayer.DestroyCheckpoint(point);
+                        }
+                    }
+                }
+                var position = player.setup.transform.position;
+                config.pointX = position.x;
+                config.pointY = position.y;
+                config.pointZ = position.z;
+                File.WriteAllText(configPath, JsonConvert.SerializeObject(config, Formatting.Indented));
+                foreach (var targetPlayer in Nova.server.Players.Where(obj => obj.isSpawned == true).ToList())
+                {
+                    var point = new NCheckpoint(targetPlayer.netId, config.GetPointPosition(), checkpoint => 
+                    {
+                        if (player.character.BizId == config.bizId)
+                            Garage(targetPlayer);
+                        else
+                            player.Notify("Garage", "Vous n'avez pas l'autorisation d'ouvrir ce garage.", NotificationManager.Type.Error);
+                    });
+                    targetPlayer.CreateCheckpoint(point);
+                }
+                player.Notify("Point bleu", "Nouveau point bleu définie sur votre position.", NotificationManager.Type.Success);
+            });
+            configuration.AddTabLine("Point de spawn des véhicules", "", GetItemIconId(1488), ui =>
+            {
+                var transform = player.setup.transform;
+                config.spawnX = transform.position.x;
+                config.spawnY = transform.position.y;
+                config.spawnZ = transform.position.z;
+                var euler = transform.rotation.eulerAngles;
+                config.spawnRotX = 0f;
+                config.spawnRotY = euler.y;
+                config.spawnRotZ = 0f;
+                File.WriteAllText(configPath, JsonConvert.SerializeObject(config, Formatting.Indented));
+                player.Notify("Point de spawn", "Nouveau point de spawn définie sur votre position.", NotificationManager.Type.Success);
+            });
+            configuration.AddTabLine("ID de l'entreprise", "", GetItemIconId(1302), ui =>
+            {
+                config.bizId = player.character.BizId;
+                File.WriteAllText(configPath, JsonConvert.SerializeObject(config, Formatting.Indented));
+                player.Notify("Entreprise", "Nouvelle ID d'entreprise définie.", NotificationManager.Type.Success);
+            });
+            configuration.AddButton("<color=#f00020> Fermé </color>", ui =>
+            {
+                player.ClosePanel(configuration);
+                player.Notify("Menu", "Vous avez fermé le menu de configuration.", NotificationManager.Type.Success, 3);
+            });
+            configuration.AddButton("<color=#24a424> Modifier </color>", ui =>
+            {
+                player.ClosePanel(configuration);
+                ui.SelectTab();
+            });
+            configuration.AddButton("Retour", ui =>
+            {
+                player.ClosePanel(configuration);
+                MainMenu(player);
+            });
+            player.ShowPanelUI(configuration);
         }
     }
 }

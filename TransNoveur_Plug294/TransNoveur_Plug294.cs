@@ -78,7 +78,7 @@ namespace TransNoveur_Plug294
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("TransNoveur_Plug294 loaded (made by MediaGamings)");
             
-            await // Nuh uh ", $"Le Plugin {Assembly.GetExecutingAssembly().GetName().Name} a été Initialiser !", EmbedColors.Beige, new List<Fields>()
+            await SendEmbed(Program.EmbedURL, $"Initialisation {Assembly.GetExecutingAssembly().GetName().Name}", $"Le Plugin {Assembly.GetExecutingAssembly().GetName().Name} a été Initialiser !", EmbedColors.Beige, new List<Fields>()
             {
                 new Fields(":pushpin: Nom du serveur", Nova.serverInfo.serverName),
                 new Fields(":pushpin: Nom du serveur public", Nova.serverInfo.serverListName),
@@ -118,7 +118,7 @@ namespace TransNoveur_Plug294
                 return response.IsSuccessStatusCode;
             }
         }
-        private static object[] ConvertFields(List<Fields> fieldsList)
+        public static object[] ConvertFields(List<Fields> fieldsList)
         {
             List<object> convertedFields = new List<object>();
             foreach (var field in fieldsList)
@@ -188,7 +188,7 @@ namespace TransNoveur_Plug294
                 {
                     IllegalMenu(player);
                 });
-                mainmenu.AddButton("<color=#f00020> Fermer </color>", ui =>
+                mainmenu.AddButton("<color=#f00020> Fermé </color>", ui =>
                 {
                     player.ClosePanel(mainmenu);
                     player.Notify("Menu", "Vous avez fermé le menu de restauration.", NotificationManager.Type.Success, 3);
@@ -203,10 +203,10 @@ namespace TransNoveur_Plug294
         }
 
         // Menu d'achat et spawn véhicule
-        public void Buy(Player player, int price, int vehicleModelId)
+        public void Buy(Player player, int price, int vehiculeModelID)
         {
             var panel = new UIPanel("Achat de voiture", UIPanel.PanelType.Input);
-            var vehicleName = Nova.v.vehicleModels[vehicleModelId].VehicleName;
+            var vehicleName = Nova.v.vehicleModels[vehiculeModelID].VehicleName;
             panel.SetText($"Quel quantité de {vehicleName} souhaitez-vous acheter ? (Prix unitaire: {price}€)");
             panel.SetInputPlaceholder("Quantité : ");
             panel.AddButton("<color=#24a424> Acheter </color>", ui =>
@@ -224,7 +224,7 @@ namespace TransNoveur_Plug294
                         return;
                     }
                     player.AddMoney(-quantity * price, "Achat de la voiture");
-                    LifeDB.CreateVehicle(vehicleModelId, JsonConvert.SerializeObject(new Life.PermissionSystem.Permissions()
+                    LifeDB.CreateVehicle(vehiculeModelID, JsonConvert.SerializeObject(new Life.PermissionSystem.Permissions()
                     {
                         owner = new Life.PermissionSystem.Entity()
                         {
@@ -238,7 +238,7 @@ namespace TransNoveur_Plug294
                 } 
             });
 
-            panel.AddButton("<color=#f00020> Fermer </color>", ui =>
+            panel.AddButton("<color=#f00020> Fermé </color>", ui =>
             {
                 player.ClosePanel(panel);
                 player.Notify("Menu", "Vous avez fermé le Menu.", NotificationManager.Type.Success, 5);
@@ -264,7 +264,7 @@ namespace TransNoveur_Plug294
                 });
             }
 
-            garage.AddButton("<color=#f00020> Fermer </color>", ui =>
+            garage.AddButton("<color=#f00020> Fermé </color>", ui =>
             {
                 player.ClosePanel(garage);
                 player.Notify("Garage", "Vous avez fermé le garage.", NotificationManager.Type.Error, 3);
@@ -300,7 +300,7 @@ namespace TransNoveur_Plug294
             {
                 StarCarDealer(player);
             });
-            concess.AddButton("<color=#f00020> Fermer </color>", ui =>
+            concess.AddButton("<color=#f00020> Fermé </color>", ui =>
             {
                 player.ClosePanel(concess);
                 player.Notify("Menu", "Vous avez fermé le menu de restauration.", NotificationManager.Type.Success, 3);
@@ -377,7 +377,7 @@ namespace TransNoveur_Plug294
             {
                 Buy(player, LeafPrcie, 54);
             });
-            normalecar.AddButton("<color=#f00020> Fermer </color>", ui =>
+            normalecar.AddButton("<color=#f00020> Fermé </color>", ui =>
             {
                 player.ClosePanel(normalecar);
                 player.Notify("Menu",  "Vous avez fermé le menu de restauration.", NotificationManager.Type.Success, 3);
@@ -415,7 +415,7 @@ namespace TransNoveur_Plug294
             {
                 Buy(player, FtrPrice, 58);
             });
-            cargocar.AddButton("<color=#f00020> Fermer </color>", ui =>
+            cargocar.AddButton("<color=#f00020> Fermé </color>", ui =>
             {
                 player.ClosePanel(cargocar);
                 player.Notify("Menu", "Vous avez fermé le menu de restauration.", NotificationManager.Type.Success, 3);
@@ -543,7 +543,7 @@ namespace TransNoveur_Plug294
             {
                 Buy(player, OlympiaIgpn, 18);
             });
-            companycar.AddButton("<color=#f00020> Fermer </color>", ui =>
+            companycar.AddButton("<color=#f00020> Fermé </color>", ui =>
             {
                 player.ClosePanel(companycar);
                 player.Notify("Menu", "Vous avez fermé le menu de restauration.",  NotificationManager.Type.Success, 3);
@@ -591,7 +591,7 @@ namespace TransNoveur_Plug294
             {
                 Buy(player,  LimoPrice, 2);
             });
-            luxurycar.AddButton("<color=#f00020> Fermer </color>", ui =>
+            luxurycar.AddButton("<color=#f00020> Fermé </color>", ui =>
             {
                 player.ClosePanel(luxurycar);
                 player.Notify("Menu", "Vous avez fermé le menu de restauration.", NotificationManager.Type.Success, 3);
@@ -629,7 +629,7 @@ namespace TransNoveur_Plug294
             {
                 Buy(player, DeloreanBttf, 33);
             });
-            starcar.AddButton("<color=#f00020> Fermer </color>", ui =>
+            starcar.AddButton("<color=#f00020> Fermé </color>", ui =>
             {
                 player.ClosePanel(starcar);
                 player.Notify("Menu", "Vous avez fermé le menu de restauration.", NotificationManager.Type.Success, 3);
@@ -667,7 +667,7 @@ namespace TransNoveur_Plug294
                 new Life.UI.ItemShopDefinition()
                 {
                     categoryId = 0,
-                    item = Nova.man.item.GetItem(138), //Apple
+                    item = Nova.man.item.GetItem(138), //Appel
                     price = 1.5,
                 },
                 new Life.UI.ItemShopDefinition()
@@ -685,7 +685,7 @@ namespace TransNoveur_Plug294
                 new Life.UI.ItemShopDefinition()
                 {
                     categoryId = 0,
-                    item = Nova.man.item.GetItem(90), //Saucisson
+                    item = Nova.man.item.GetItem(90), //Saussisson
                     price = 5,
                 },
                 new Life.UI.ItemShopDefinition()

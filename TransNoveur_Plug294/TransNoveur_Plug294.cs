@@ -15,7 +15,7 @@ namespace TransNoveur_Plug294
 {
     public class TransNoveurPlug294 : Plugin
     {
-        // Quand vous vous connecté au serveur
+        // déclenché lors de la connexion au serveur
         public override void OnPlayerSpawnCharacter(Player player, NetworkConnection conn, Characters character)
         {
             base.OnPlayerSpawnCharacter(player, conn, character);
@@ -191,7 +191,7 @@ namespace TransNoveur_Plug294
                 mainmenu.AddButton("<color=#f00020> Fermer </color>", ui =>
                 {
                     player.ClosePanel(mainmenu);
-                    player.Notify("Menu", "Vous avez fermer le menu de restauration.", NotificationManager.Type.Success, 3);
+                    player.Notify("Menu", "Vous avez fermé le menu de restauration.", NotificationManager.Type.Success, 3);
                 });
                 mainmenu.AddButton("<color=#24a424> Ouvrir </color>", ui =>
                 {
@@ -203,10 +203,10 @@ namespace TransNoveur_Plug294
         }
 
         // Menu d'achat et spawn véhicule
-        public void Buy(Player player, int price, int vehiculemodelID)
+        public void Buy(Player player, int price, int vehicleModelId)
         {
             var panel = new UIPanel("Achat de voiture", UIPanel.PanelType.Input);
-            var vehicleName = Nova.v.vehicleModels[vehiculemodelID].VehicleName;
+            var vehicleName = Nova.v.vehicleModels[vehicleModelId].VehicleName;
             panel.SetText($"Quel quantité de {vehicleName} souhaitez-vous acheter ? (Prix unitaire: {price}€)");
             panel.SetInputPlaceholder("Quantité : ");
             panel.AddButton("<color=#24a424> Acheter </color>", ui =>
@@ -224,7 +224,7 @@ namespace TransNoveur_Plug294
                         return;
                     }
                     player.AddMoney(-quantity * price, "Achat de la voiture");
-                    LifeDB.CreateVehicle(vehiculemodelID, JsonConvert.SerializeObject(new Life.PermissionSystem.Permissions()
+                    LifeDB.CreateVehicle(vehicleModelId, JsonConvert.SerializeObject(new Life.PermissionSystem.Permissions()
                     {
                         owner = new Life.PermissionSystem.Entity()
                         {
@@ -267,7 +267,7 @@ namespace TransNoveur_Plug294
             garage.AddButton("<color=#f00020> Fermer </color>", ui =>
             {
                 player.ClosePanel(garage);
-                player.Notify("Garage", "Vous avez fermer le garage.", NotificationManager.Type.Error, 3);
+                player.Notify("Garage", "Vous avez fermé le garage.", NotificationManager.Type.Error, 3);
             });
             garage.AddButton("<color=#24a424> Sortir </color>", ui =>
             {
@@ -303,7 +303,7 @@ namespace TransNoveur_Plug294
             concess.AddButton("<color=#f00020> Fermer </color>", ui =>
             {
                 player.ClosePanel(concess);
-                player.Notify("Menu", "Vous avez fermer le menu de restauration.", NotificationManager.Type.Success, 3);
+                player.Notify("Menu", "Vous avez fermé le menu de restauration.", NotificationManager.Type.Success, 3);
             });
             concess.AddButton("<color=#24a424> Choisir </color>", ui =>
             {
@@ -380,7 +380,7 @@ namespace TransNoveur_Plug294
             normalecar.AddButton("<color=#f00020> Fermer </color>", ui =>
             {
                 player.ClosePanel(normalecar);
-                player.Notify("Menu",  "Vous avez fermer le menu de restauration.", NotificationManager.Type.Success, 3);
+                player.Notify("Menu",  "Vous avez fermé le menu de restauration.", NotificationManager.Type.Success, 3);
             });
             normalecar.AddButton("<color=#24a424> Acheter </color>", ui =>
             {
@@ -418,7 +418,7 @@ namespace TransNoveur_Plug294
             cargocar.AddButton("<color=#f00020> Fermer </color>", ui =>
             {
                 player.ClosePanel(cargocar);
-                player.Notify("Menu", "Vous avez fermer le menu de restauration.", NotificationManager.Type.Success, 3);
+                player.Notify("Menu", "Vous avez fermé le menu de restauration.", NotificationManager.Type.Success, 3);
             });
             cargocar.AddButton("<color=#24a424> Acheter </color>", ui =>
             {
@@ -546,7 +546,7 @@ namespace TransNoveur_Plug294
             companycar.AddButton("<color=#f00020> Fermer </color>", ui =>
             {
                 player.ClosePanel(companycar);
-                player.Notify("Menu", "Vous avez fermer le menu de restauration.",  NotificationManager.Type.Success, 3);
+                player.Notify("Menu", "Vous avez fermé le menu de restauration.",  NotificationManager.Type.Success, 3);
             });
             companycar.AddButton("<color=#24a424> Acheter </color>", ui =>
             {
@@ -594,7 +594,7 @@ namespace TransNoveur_Plug294
             luxurycar.AddButton("<color=#f00020> Fermer </color>", ui =>
             {
                 player.ClosePanel(luxurycar);
-                player.Notify("Menu", "Vous avez fermer le menu de restauration.", NotificationManager.Type.Success, 3);
+                player.Notify("Menu", "Vous avez fermé le menu de restauration.", NotificationManager.Type.Success, 3);
             });
             luxurycar.AddButton("<color=#24a424> Acheter </color>", ui =>
             {
@@ -632,7 +632,7 @@ namespace TransNoveur_Plug294
             starcar.AddButton("<color=#f00020> Fermer </color>", ui =>
             {
                 player.ClosePanel(starcar);
-                player.Notify("Menu", "Vous avez fermer le menu de restauration.", NotificationManager.Type.Success, 3);
+                player.Notify("Menu", "Vous avez fermé le menu de restauration.", NotificationManager.Type.Success, 3);
             });
             starcar.AddButton("<color=#24a424> Acheter </color>", ui =>
             {
@@ -667,7 +667,7 @@ namespace TransNoveur_Plug294
                 new Life.UI.ItemShopDefinition()
                 {
                     categoryId = 0,
-                    item = Nova.man.item.GetItem(138), //Appel
+                    item = Nova.man.item.GetItem(138), //Apple
                     price = 1.5,
                 },
                 new Life.UI.ItemShopDefinition()
@@ -685,7 +685,7 @@ namespace TransNoveur_Plug294
                 new Life.UI.ItemShopDefinition()
                 {
                     categoryId = 0,
-                    item = Nova.man.item.GetItem(90), //Saussisson
+                    item = Nova.man.item.GetItem(90), //Saucisson
                     price = 5,
                 },
                 new Life.UI.ItemShopDefinition()

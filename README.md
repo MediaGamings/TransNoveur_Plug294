@@ -1,3 +1,5 @@
+![GitHub all releases](https://img.shields.io/github/downloads/MediaGamings/TransNoveur_Plug294/total)
+
 Ce plugin a été réalisé pour une entreprise de fournisseur. Il regroupe trois catégories que vous pourrez utiliser en fonction des besoins des différentes entreprises présentes sur votre serveur.
 
 🔹 Catégorie Véhicules :

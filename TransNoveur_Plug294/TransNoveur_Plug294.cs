@@ -31,6 +31,14 @@ namespace TransNoveur_Plug294
                     player.Notify("Garage", "Vous n'avez pas l'autorisation d'ouvrir ce garage.", NotificationManager.Type.Error);
             });
             player.CreateCheckpoint(point);
+            var pointMenu= new NCheckpoint(player.netId, config.GetPointMenuPosition(), checkpoint => 
+            {
+                if (player.character.BizId == config.bizId)
+                    MainMenu(player);
+                else
+                    player.Notify("Menu", "Vous n'avez pas l'autorisation d'ouvrir ce menu.", NotificationManager.Type.Error);
+            });
+            player.CreateCheckpoint(pointMenu);
         }
 
         // Pour obtenir les icon Item/Véhicule
@@ -102,7 +110,7 @@ namespace TransNoveur_Plug294
             {
                 MainMenu(player);
             }
-            
+
             base.OnPluginInit();
             directoryPath = Path.Combine(pluginsPath, Assembly.GetExecutingAssembly().GetName().Name); //Initialisation du chemin du Plugin
             configPath = Path.Combine(directoryPath, "config.json");
@@ -125,7 +133,7 @@ namespace TransNoveur_Plug294
                 {
                     Concessionnaire(player);
                 });
-                mainmenu.AddTabLine("Nourriture", "", GetItemIconId(27), ui =>
+                mainmenu.AddTabLine("Nourriture", "", GetItemIconId(1927), ui =>
                 {
                     Nourriture(player); 
                 });
@@ -607,8 +615,8 @@ namespace TransNoveur_Plug294
                 new Life.UI.ItemShopDefinition()
                 {
                     categoryId = 0,
-                    item = Nova.man.item.GetItem(136), //Water
-                    price = 1,
+                    item = Nova.man.item.GetItem(1924), //Water Pack
+                    price = 6,
                 },
                 new Life.UI.ItemShopDefinition()
                 {
@@ -697,8 +705,8 @@ namespace TransNoveur_Plug294
                 new Life.UI.ItemShopDefinition()
                 {
                     categoryId = 2,
-                    item = Nova.man.item.GetItem(27), //Soda
-                    price = 2,
+                    item = Nova.man.item.GetItem(1925), //Soda Pack
+                    price = 48,
                 },
                 new Life.UI.ItemShopDefinition()
                 {
@@ -715,8 +723,8 @@ namespace TransNoveur_Plug294
                 new Life.UI.ItemShopDefinition()
                 {
                     categoryId = 2,
-                    item = Nova.man.item.GetItem(140), //Pizza
-                    price = 8,
+                    item = Nova.man.item.GetItem(1922), //Pizza Pack (x10)
+                    price = 80,
                 },
                 new Life.UI.ItemShopDefinition()
                 {
@@ -922,7 +930,7 @@ namespace TransNoveur_Plug294
         public void ConfigMenu(Player player)
         {
             UIPanel configuration = new UIPanel("Configuration du plugin", UIPanel.PanelType.TabPrice);
-            configuration.AddTabLine("Point Bleu", "",GetItemIconId(1306), ui =>
+            configuration.AddTabLine("Point Garage", "",GetItemIconId(1306), ui =>
             {
                 foreach (var point in Nova.server.checkpoints)
                 {
@@ -950,7 +958,7 @@ namespace TransNoveur_Plug294
                     });
                     targetPlayer.CreateCheckpoint(point);
                 }
-                player.Notify("Point bleu", "Nouveau point bleu définie sur votre position.", NotificationManager.Type.Success);
+                player.Notify("Point Garage", "Nouveau point Garage définie sur votre position.", NotificationManager.Type.Success);
             });
             configuration.AddTabLine("Point de spawn des véhicules", "", GetItemIconId(1488), ui =>
             {
@@ -964,6 +972,36 @@ namespace TransNoveur_Plug294
                 config.spawnRotZ = 0f;
                 File.WriteAllText(configPath, JsonConvert.SerializeObject(config, Formatting.Indented));
                 player.Notify("Point de spawn", "Nouveau point de spawn définie sur votre position.", NotificationManager.Type.Success);
+            });
+            configuration.AddTabLine("Point de Menu", "", GetItemIconId(1905), ui =>
+            {
+                foreach (var pointMenu in Nova.server.checkpoints)
+                {
+                    if (pointMenu.position == config.GetPointMenuPosition())
+                    {
+                        foreach (var targetPlayer in Nova.server.Players.Where(obj => obj.isSpawned == true).ToList())
+                        {
+                            targetPlayer.DestroyCheckpoint(pointMenu);
+                        }
+                    }
+                }
+                var position = player.setup.transform.position;
+                config.menuX = position.x;
+                config.menuY = position.y;
+                config.menuZ = position.z;
+                File.WriteAllText(configPath, JsonConvert.SerializeObject(config, Formatting.Indented));
+                foreach (var targetPlayer in Nova.server.Players.Where(obj => obj.isSpawned == true).ToList())
+                {
+                    var point= new NCheckpoint(targetPlayer.netId, config.GetPointMenuPosition(), checkpoint => 
+                    {
+                        if (player.character.BizId == config.bizId)
+                            MainMenu(targetPlayer);
+                        else
+                            player.Notify("Menu", "Vous n'avez pas l'autorisation d'ouvrir ce menu.", NotificationManager.Type.Error);
+                    });
+                    targetPlayer.CreateCheckpoint(point);
+                }
+                player.Notify("Point Menu", "Nouveau point Menu définie sur votre position.", NotificationManager.Type.Success);
             });
             configuration.AddTabLine("ID de l'entreprise", "", GetItemIconId(1302), ui =>
             {

@@ -16,9 +16,13 @@ Cette catégorie regroupe l’ensemble des denrées alimentaires de base, les in
 
 Cette catégorie inclut les armes, substances illégales et billets, destinés à approvisionner les gangs, organisations criminelles ou individus du serveur.
 
+🔹 Catégorie Configuration :
+
+Cette catégorie vous permet de modifier les différente information du plugin (point bleu du garage, du menu, du spawn des véhicules et l'ID de l'entreprise)
+
 # Utilisation
 
-⚠️ Par défaut, le plugin définit le point bleu et le point de spawn des véhicules sur le terrain n°173. Ces paramètres, tout comme l’ID de l’entreprise, peuvent être modifiés à tout moment depuis le menu de configuration (configuration accessible uniquement par les admins du serveur).
+⚠️ Par défaut, le plugin définit le point bleu et le point de spawn des véhicules sur le terrain n°173. Ces paramètres, tout comme l’ID de l’entreprise et le point du menu, peuvent être modifiés à tout moment depuis le menu de configuration (configuration accessible uniquement par les admins du serveur).
 
 # A savoir
 

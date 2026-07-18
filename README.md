@@ -1,35 +1,45 @@
 ![GitHub all releases](https://img.shields.io/github/downloads/MediaGamings/TransNoveur_Plug294/total)
 
-Ce plugin a été réalisé pour une entreprise de fournisseur. Il regroupe trois catégories que vous pourrez utiliser en fonction des besoins des différentes entreprises présentes sur votre serveur.
+# TransNoveur_Plug294
 
-🔹 Catégorie Véhicules :
+Plugin d'entreprise pour **Nova-Life**, pensé pour le RP autour de la restauration : les membres de l'entreprise approvisionnent les commerces de la ville en véhicules, ingrédients, machines et marchandises illégales.
 
-Cette interface permet d’accéder à l’ensemble des véhicules du jeu, que vous pouvez acheter et faire apparaître dans la zone bleue définie, via un point d’interaction placé dans la pièce dont la porte est ouverte.
+## Fonctionnalités
 
-![Logo GitHub](https://i.imgur.com/2jEi6sn.png)
+Menu principal accessible par la touche `=` (membres de l'entreprise) ou via un point d'interaction placé en ville.
 
-🔹 Catégorie Alimentation :
+### 🚗 Voiture
+Concessionnaire de 40 véhicules en 5 catégories, avec confirmation avant chaque achat. Les véhicules rejoignent un **garage personnel** (point d'interaction dédié) et ressortent dans la zone de spawn configurée. La catégorie **Mécanique** fournit bougie, courroie, batterie, batterie portable et bidons d'essence (unité et gros formats) à 50 % des prix officiels.
 
-Cette catégorie regroupe l’ensemble des denrées alimentaires de base, les ingrédients nécessaires à la préparation de recettes, ainsi que divers produits issus de l’agriculture.
+### 🥖 Nourriture — « Fournisseur Restauration »
+38 ingrédients en 5 catégories : Station Exo, Boulangerie, Fast Food, Fruits & Graines, Café. Uniquement des denrées non craftables, en gros format lorsqu'il existe (cartons, cagettes, sacs, piles). Prix : 50 % des prix officiels — l'entreprise garde une marge de revente.
 
-🔹 Catégorie Illégal :
+### ⚙️ Machines — « Machines Restauration »
+Toutes les machines de production du jeu (robot boulangerie, four, établi fast-food, friteuse, machines à café dont les 6 coloris capsules, tireuses soda et bière) et les ustensiles de démarrage. Prix officiels.
 
-Cette catégorie inclut les armes, substances illégales et billets, destinés à approvisionner les gangs, organisations criminelles ou individus du serveur.
+### 🔫 Illégal — « Fournisseur Illégal »
+Outils de l'IllegalPoint (pied de biche, tenaille, couteaux), armes et composants complets de la culture de cannabis, pour approvisionner gangs et organisations. Prix officiels.
 
-🔹 Catégorie Configuration :
+### 🛠️ Configuration (admins niveau 4 minimum)
+Tout se configure **en jeu** : points garage, menu et spawn des véhicules, entreprise (ID), webhook Discord. Sauvegarde automatique dans `config.json`.
 
-Cette catégorie vous permet de modifier les différente information du plugin (point bleu du garage, du menu, du spawn des véhicules et l'ID de l'entreprise)
+## 💳 Paiement bancaire automatique
+Sans porte-monnaie ou avec un solde insuffisant en poche, la somme est prélevée sur le compte en banque, avec notification. Actif sur tous les achats : concessionnaire et les trois shops.
 
-# Utilisation
+## 📜 Logs Discord
+Chaque transaction (véhicule, shop, garage), prélèvement bancaire, action admin et erreur du plugin est envoyée en embed dans un salon Discord : le serveur dispose de preuves en cas de litige joueur. Le webhook se configure **en jeu**, une seule fois, puis est verrouillé — modifiable uniquement dans `config.json`, l'URL n'est jamais réaffichée en jeu.
 
-⚠️ Par défaut, le plugin définit le point bleu et le point de spawn des véhicules sur le terrain n°173. Ces paramètres, tout comme l’ID de l’entreprise et le point du menu, peuvent être modifiés à tout moment depuis le menu de configuration (configuration accessible uniquement par les admins du serveur).
+## Installation
 
-# A savoir
+1. Télécharger `TransNoveur_Plug294.dll` depuis la [dernière release](../../releases/latest).
+2. La copier dans le dossier `Plugins` du serveur.
+3. Redémarrer le serveur.
+4. En jeu, avec un compte admin : menu → **Configuration** pour placer les points et définir l'ID de l'entreprise.
 
-🔧 En cas de problème lié au fonctionnement du plugin, n’hésitez pas à me contacter pour assistance.
+## Compatibilité
 
-⚠️ Ce plugin est sous licence, il est donc demandé d'inscrire le nom du créateur après toute modification même légère.
+À jour des dernières mises à jour de Nova-Life : système d'argent par portes-monnaie, nouvelles icônes, noms d'items localisés. Tous les ID d'items et de véhicules sont vérifiés contre la table officielle d'Amboise.
 
-# 📌 Crédits :
+---
 
-MediaGamings
+*Développé par MediaGamings.*

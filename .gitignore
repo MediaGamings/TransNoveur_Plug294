@@ -1,0 +1,10 @@
+bin/
+obj/
+.vs/
+.idea/
+*.user
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+README-GitHub.md
+RELEASE-NOTES.md

@@ -14,9 +14,11 @@ namespace TransNoveur_Plug294
         private static bool logWorkerRunning = false;
         private static readonly HttpClient logHttp = new HttpClient();
 
-        // Couleur du cadre selon l'événement
-        private const int LogVert = 5763719;     // achats
-        private const int LogBleu = 3447003;     // garage
+        // Couleur du cadre selon le menu d'où vient l'achat
+        private const int LogVert = 5763719;     // nourriture (et webhook configuré)
+        private const int LogBleu = 3447003;     // voiture : concessionnaire, mécanique, garage
+        private const int LogGris = 9807270;     // machines
+        private const int LogViolet = 10181046;  // illégal
         private const int LogJaune = 15844367;   // banque
         private const int LogOrange = 15105570;  // administration
         private const int LogRouge = 15548997;   // erreurs

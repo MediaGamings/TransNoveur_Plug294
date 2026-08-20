@@ -14,8 +14,8 @@ Concessionnaire de 40 véhicules en 5 catégories, avec confirmation avant chaqu
 ### 🥖 Nourriture — « Fournisseur Restauration »
 38 ingrédients en 5 catégories : Station Exo, Boulangerie, Fast Food, Fruits & Graines, Café. Uniquement des denrées non craftables, en gros format lorsqu'il existe (cartons, cagettes, sacs, piles). Prix : 50 % des prix officiels — l'entreprise garde une marge de revente.
 
-### ⚙️ Machines — « Machines Restauration »
-Toutes les machines de production du jeu (robot boulangerie, four, établi fast-food, friteuse, machines à café dont les 6 coloris capsules, tireuses soda et bière) et les ustensiles de démarrage. Prix officiels.
+### ⚙️ Machines
+Toutes les machines du jeu, rangées par métier en 9 catégories : **Bois**, **Métallurgie**, **Plastique & Carton**, **Électronique**, **Production alimentaire**, Cuisine & Fast Food, Café, Tireuses et Ustensiles. Des machines à découper le bois aux hauts fourneaux, en passant par la production de plastique, de carton et de PCB, le robot boulangerie et la machine à vin — sans oublier le four de boulangerie, l'établi fast-food, la friteuse, les machines à café (dont les 6 coloris capsules) et les tireuses. Prix : **50 % des prix officiels** sur les machines ; les ustensiles de démarrage gardent leurs prix officiels.
 
 ### 🔫 Illégal — « Fournisseur Illégal »
 Outils de l'IllegalPoint (pied de biche, tenaille, couteaux), armes et composants complets de la culture de cannabis, pour approvisionner gangs et organisations. Prix officiels.
@@ -27,7 +27,7 @@ Tout se configure **en jeu** : points garage, menu et spawn des véhicules, entr
 Sans porte-monnaie ou avec un solde insuffisant en poche, la somme est prélevée sur le compte en banque, avec notification. Actif sur tous les achats : concessionnaire et les trois shops.
 
 ## 📜 Logs Discord
-Chaque transaction (véhicule, shop, garage), prélèvement bancaire, action admin et erreur du plugin est envoyée en embed dans un salon Discord : le serveur dispose de preuves en cas de litige joueur. Le webhook se configure **en jeu**, une seule fois, puis est verrouillé — modifiable uniquement dans `config.json`, l'URL n'est jamais réaffichée en jeu.
+Chaque transaction (véhicule, shop, garage), prélèvement bancaire, action admin et erreur du plugin est envoyée en embed dans un salon Discord : le serveur dispose de preuves en cas de litige joueur. **Chaque menu a sa couleur de cadre** — bleu pour la voiture, vert pour la restauration, gris pour les machines, violet pour l'illégal — et l'embed d'achat précise la catégorie de l'article. Le webhook se configure **en jeu**, une seule fois, puis est verrouillé — modifiable uniquement dans `config.json`, l'URL n'est jamais réaffichée en jeu.
 
 ## Installation
 

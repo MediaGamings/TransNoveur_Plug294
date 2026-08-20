@@ -100,7 +100,7 @@ namespace TransNoveur_Plug294
             }
             concess.AddTabLine("Mécanique", "", GetItemIconId(5), ui =>
             {
-                ShopCategoryMenu(player, "Restauration Voiture", mecaniqueCatalog, mecaniqueCatalog[0], () => Concessionnaire(player));
+                ShopCategoryMenu(player, "Restauration Voiture", mecaniqueCatalog, LogBleu, mecaniqueCatalog[0], () => Concessionnaire(player));
             });
             concess.AddButton("<color=#f00020> Fermer </color>", ui =>
             {
@@ -182,7 +182,7 @@ namespace TransNoveur_Plug294
                         coOwners = new List<Life.PermissionSystem.Entity>()
                     }));
                     player.Notify("Menu", "Vous avez acheté " + vehicleName + " pour " + price + "€.", NotificationManager.Type.Success);
-                    Log("🚗 Achat Véhicule", LogVert, "👤 Joueur", Who(player), "🚙 Véhicule", vehicleName, "💰 Prix", price + "€");
+                    Log("🚗 Achat Véhicule", LogBleu, "👤 Joueur", Who(player), "🚙 Véhicule", vehicleName, "💰 Prix", price + "€");
                     player.ClosePanel(panel);
                 }
                 catch (Exception e)

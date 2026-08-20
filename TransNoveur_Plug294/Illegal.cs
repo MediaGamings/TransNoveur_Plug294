@@ -42,7 +42,7 @@ namespace TransNoveur_Plug294
 
         public void IllegalMenu(Player player)
         {
-            ShopMenu(player, "Fournisseur Illégal", illegalCatalog);
+            ShopMenu(player, "Fournisseur Illégal", illegalCatalog, LogViolet);
         }
     }
 }

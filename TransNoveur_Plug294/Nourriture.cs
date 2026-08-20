@@ -60,7 +60,7 @@ namespace TransNoveur_Plug294
 
         public void Nourriture(Player player)
         {
-            ShopMenu(player, "Fournisseur Restauration", nourritureCatalog);
+            ShopMenu(player, "Fournisseur Restauration", nourritureCatalog, LogVert);
         }
     }
 }

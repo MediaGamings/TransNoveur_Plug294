@@ -98,7 +98,7 @@ namespace TransNoveur_Plug294
                 {
                     Nourriture(player);
                 });
-                mainmenu.AddTabLine("Machines", "", GetItemIconId(1994), ui =>
+                mainmenu.AddTabLine("Machines", "", GetItemIconId(1420), ui =>
                 {
                     MachinesMenu(player);
                 });

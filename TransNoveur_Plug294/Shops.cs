@@ -17,7 +17,8 @@ namespace TransNoveur_Plug294
             return new ShopEntry { Name = name, Id = id, Price = price };
         }
 
-        private void ShopMenu(Player player, string title, ShopCategory[] catalog)
+        // logColor = couleur du cadre des logs Discord, une par menu
+        private void ShopMenu(Player player, string title, ShopCategory[] catalog, int logColor)
         {
             UIPanel panel = new UIPanel(title, UIPanel.PanelType.TabPrice);
             foreach (var category in catalog)
@@ -25,7 +26,7 @@ namespace TransNoveur_Plug294
                 var cat = category;
                 panel.AddTabLine(cat.Name, "", GetItemIconId(cat.IconItem), ui =>
                 {
-                    ShopCategoryMenu(player, title, catalog, cat);
+                    ShopCategoryMenu(player, title, catalog, logColor, cat);
                 });
             }
             panel.AddButton("<color=#f00020> Fermer </color>", ui =>
@@ -47,7 +48,7 @@ namespace TransNoveur_Plug294
         }
 
         // back = menu de retour custom (par défaut : le menu des catégories du shop)
-        private void ShopCategoryMenu(Player player, string title, ShopCategory[] catalog, ShopCategory category, Action? back = null)
+        private void ShopCategoryMenu(Player player, string title, ShopCategory[] catalog, int logColor, ShopCategory category, Action? back = null)
         {
             UIPanel panel = new UIPanel(title + " - " + category.Name, UIPanel.PanelType.TabPrice);
             foreach (var entry in category.Items)
@@ -55,7 +56,7 @@ namespace TransNoveur_Plug294
                 var item = entry;
                 panel.AddTabLine(item.Name, item.Price + "€", GetItemIconId(item.Id), ui =>
                 {
-                    ShopBuy(player, title, catalog, category, item, back);
+                    ShopBuy(player, title, catalog, logColor, category, item, back);
                 });
             }
             panel.AddButton("<color=#f00020> Fermer </color>", ui =>
@@ -74,12 +75,12 @@ namespace TransNoveur_Plug294
                 if (back != null)
                     back();
                 else
-                    ShopMenu(player, title, catalog);
+                    ShopMenu(player, title, catalog, logColor);
             });
             player.ShowPanelUI(panel);
         }
 
-        private void ShopBuy(Player player, string title, ShopCategory[] catalog, ShopCategory category, ShopEntry item, Action? back = null)
+        private void ShopBuy(Player player, string title, ShopCategory[] catalog, int logColor, ShopCategory category, ShopEntry item, Action? back = null)
         {
             var panel = new UIPanel("Achat - " + item.Name, UIPanel.PanelType.Input);
             panel.SetText($"Quel quantité de {item.Name} souhaitez-vous acheter ? (Prix unitaire: {item.Price}€)");
@@ -117,7 +118,7 @@ namespace TransNoveur_Plug294
                     }
                     player.setup.inventory.AddItem(item.Id, quantity, "");
                     player.Notify("Vendeur", "Vous avez acheté " + quantity + " " + item.Name + " pour " + total + "€.", NotificationManager.Type.Success);
-                    Log("🛒 Achat Shop", LogVert, "👤 Joueur", Who(player), "🏪 Shop", title, "📦 Article", quantity + " × " + item.Name, "💰 Montant", total + "€");
+                    Log("🛒 Achat Shop", logColor, "👤 Joueur", Who(player), "🏪 Shop", title, "🗂️ Catégorie", category.Name, "📦 Article", quantity + " × " + item.Name, "💰 Montant", total + "€");
                     player.ClosePanel(panel);
                 }
                 catch (Exception e)
@@ -129,7 +130,7 @@ namespace TransNoveur_Plug294
             panel.AddButton("Retour", ui =>
             {
                 player.ClosePanel(panel);
-                ShopCategoryMenu(player, title, catalog, category, back);
+                ShopCategoryMenu(player, title, catalog, logColor, category, back);
             });
             player.ShowPanelUI(panel);
         }

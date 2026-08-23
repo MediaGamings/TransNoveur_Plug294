@@ -102,10 +102,14 @@ namespace TransNoveur_Plug294
                 {
                     MachinesMenu(player);
                 });
-                mainmenu.AddTabLine("Illégal", "", GetItemIconId(6), ui =>
+                // Onglet retirable par les serveurs qui ne veulent pas d'illégal
+                if (config.showIllegal)
                 {
-                    IllegalMenu(player);
-                });
+                    mainmenu.AddTabLine("Illégal", "", GetItemIconId(6), ui =>
+                    {
+                        IllegalMenu(player);
+                    });
+                }
                 if (player.account.adminLevel >= 4)
                 {
                     mainmenu.AddTabLine("Configuration", "", GetItemIconId(1741), ui =>

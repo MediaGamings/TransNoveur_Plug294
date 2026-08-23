@@ -1,4 +1,5 @@
 using Life;
+using Life.InventorySystem;
 using Life.Network;
 using Life.UI;
 
@@ -15,6 +16,13 @@ namespace TransNoveur_Plug294
         private static ShopEntry It(string name, int id, double price)
         {
             return new ShopEntry { Name = name, Id = id, Price = price };
+        }
+
+        // Les objets à état (bougie, courroie, batterie) sortent neufs de la boutique
+        private static string BaseItemData(int itemId)
+        {
+            var item = Nova.man.item.GetItem(itemId);
+            return item is StateItem state ? state.GetBaseData() : "";
         }
 
         // logColor = couleur du cadre des logs Discord, une par menu
@@ -104,7 +112,8 @@ namespace TransNoveur_Plug294
                         player.Notify("Vendeur", "Vous ne pouvez pas acheter une quantité négative ou nulle.", NotificationManager.Type.Error);
                         return;
                     }
-                    if (player.setup.inventory.CanAddItem(item.Id, quantity, "") == false)
+                    string data = BaseItemData(item.Id);
+                    if (player.setup.inventory.CanAddItem(item.Id, quantity, data) == false)
                     {
                         player.Notify("Vendeur", "Vous n'avez pas assez de place dans votre inventaire.", NotificationManager.Type.Error);
                         return;
@@ -116,7 +125,7 @@ namespace TransNoveur_Plug294
                         player.ClosePanel(panel);
                         return;
                     }
-                    player.setup.inventory.AddItem(item.Id, quantity, "");
+                    player.setup.inventory.AddItem(item.Id, quantity, data);
                     player.Notify("Vendeur", "Vous avez acheté " + quantity + " " + item.Name + " pour " + total + "€.", NotificationManager.Type.Success);
                     Log("🛒 Achat Shop", logColor, "👤 Joueur", Who(player), "🏪 Shop", title, "🗂️ Catégorie", category.Name, "📦 Article", quantity + " × " + item.Name, "💰 Montant", total + "€");
                     player.ClosePanel(panel);

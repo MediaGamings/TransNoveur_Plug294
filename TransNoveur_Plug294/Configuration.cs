@@ -112,6 +112,16 @@ namespace TransNoveur_Plug294
                 player.Notify("Entreprise", "Nouvelle ID d'entreprise définie.", NotificationManager.Type.Success);
                 Log("⚙️ Administration", LogOrange, "👤 Admin", Who(player), "📋 Action", "ID d'entreprise défini sur " + config.bizId);
             });
+            // Interrupteur de l'onglet Illégal (serveurs sans RP illégal)
+            configuration.AddTabLine("Fournisseur Illégal", config.showIllegal ? "<color=#24a424> activé </color>" : "<color=#f00020> désactivé </color>", GetItemIconId(6), ui =>
+            {
+                config.showIllegal = !config.showIllegal;
+                SaveConfig();
+                player.Notify("Illégal", config.showIllegal ? "Onglet Illégal activé." : "Onglet Illégal désactivé.", NotificationManager.Type.Success);
+                Log("⚙️ Administration", LogOrange, "👤 Admin", Who(player), "📋 Action", config.showIllegal ? "Onglet Illégal activé" : "Onglet Illégal désactivé");
+                player.ClosePanel(configuration);
+                ConfigMenu(player);
+            });
             // Webhook configurable une seule fois, URL jamais réaffichée (modifiable ensuite dans config.json)
             configuration.AddTabLine("Webhook Discord (logs)", config.discordWebhook == "" ? "" : "<color=#f08000> déjà configuré </color>", GetItemIconId(1741), ui =>
             {

@@ -6,6 +6,7 @@ public class Config
 {
     public int bizId = 0;
     public string discordWebhook = "";
+    public bool showIllegal = true; // false = onglet Illégal retiré du menu
     public float pointX = 262.8445f;
     public float pointY = 50.21f;
     public float pointZ = 992.6866f;

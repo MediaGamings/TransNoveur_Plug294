@@ -9,7 +9,7 @@ Plugin d'entreprise pour **Nova-Life**, pensé pour le RP autour de la restaurat
 Menu principal accessible par la touche `=` (membres de l'entreprise) ou via un point d'interaction placé en ville.
 
 ### 🚗 Voiture
-Concessionnaire de 40 véhicules en 5 catégories, avec confirmation avant chaque achat. Les véhicules rejoignent un **garage personnel** (point d'interaction dédié) et ressortent dans la zone de spawn configurée. La catégorie **Mécanique** fournit bougie, courroie, batterie, batterie portable et bidons d'essence (unité et gros formats) à 50 % des prix officiels.
+Concessionnaire de 40 véhicules en 5 catégories, avec confirmation avant chaque achat. Les véhicules rejoignent un **garage personnel** (point d'interaction dédié) et ressortent dans la zone de spawn configurée. La catégorie **Mécanique** fournit bougie, courroie, batterie, batterie portable et bidons d'essence (unité et gros formats) à 50 % des prix officiels ; bougies, courroies et batteries sortent **neuves, à 100 %**.
 
 ### 🥖 Nourriture — « Fournisseur Restauration »
 38 ingrédients en 5 catégories : Station Exo, Boulangerie, Fast Food, Fruits & Graines, Café. Uniquement des denrées non craftables, en gros format lorsqu'il existe (cartons, cagettes, sacs, piles). Prix : 50 % des prix officiels — l'entreprise garde une marge de revente.
@@ -18,10 +18,10 @@ Concessionnaire de 40 véhicules en 5 catégories, avec confirmation avant chaqu
 Toutes les machines du jeu, rangées par métier en 9 catégories : **Bois**, **Métallurgie**, **Plastique & Carton**, **Électronique**, **Production alimentaire**, Cuisine & Fast Food, Café, Tireuses et Ustensiles. Des machines à découper le bois aux hauts fourneaux, en passant par la production de plastique, de carton et de PCB, le robot boulangerie et la machine à vin — sans oublier le four de boulangerie, l'établi fast-food, la friteuse, les machines à café (dont les 6 coloris capsules) et les tireuses. Prix : **50 % des prix officiels** sur les machines ; les ustensiles de démarrage gardent leurs prix officiels.
 
 ### 🔫 Illégal — « Fournisseur Illégal »
-Outils de l'IllegalPoint (pied de biche, tenaille, couteaux), armes et composants complets de la culture de cannabis, pour approvisionner gangs et organisations. Prix officiels.
+Outils de l'IllegalPoint (pied de biche, tenaille, couteaux), armes et composants complets de la culture de cannabis, pour approvisionner gangs et organisations. Prix officiels. **L'onglet se désactive depuis le menu Configuration**, pour les serveurs qui ne veulent pas de contenu illégal.
 
 ### 🛠️ Configuration (admins niveau 4 minimum)
-Tout se configure **en jeu** : points garage, menu et spawn des véhicules, entreprise (ID), webhook Discord. Sauvegarde automatique dans `config.json`.
+Tout se configure **en jeu** : points garage, menu et spawn des véhicules, entreprise (ID), affichage du Fournisseur Illégal, webhook Discord. Sauvegarde automatique dans `config.json`.
 
 ## 💳 Paiement bancaire automatique
 Sans porte-monnaie ou avec un solde insuffisant en poche, la somme est prélevée sur le compte en banque, avec notification. Actif sur tous les achats : concessionnaire et les trois shops.

@@ -166,24 +166,30 @@ namespace TransNoveur_Plug294
             {
                 try
                 {
-                    if (!Pay(player, price, "Achat véhicule : " + vehicleName))
-                    {
-                        player.Notify("Menu", "Vous n'avez pas assez d'argent (poche + banque).", NotificationManager.Type.Error);
-                        player.ClosePanel(panel);
-                        return;
-                    }
-                    LifeDB.CreateVehicle(vehiculeModelID, JsonConvert.SerializeObject(new Life.PermissionSystem.Permissions()
-                    {
-                        owner = new Life.PermissionSystem.Entity()
-                        {
-                            groupId = 0,
-                            characterId = player.character.Id,
-                        },
-                        coOwners = new List<Life.PermissionSystem.Entity>()
-                    }));
-                    player.Notify("Menu", "Vous avez acheté " + vehicleName + " pour " + price + "€.", NotificationManager.Type.Success);
-                    Log("🚗 Achat Véhicule", LogBleu, "👤 Joueur", Who(player), "🚙 Véhicule", vehicleName, "💰 Prix", price + "€");
                     player.ClosePanel(panel);
+                    // Le véhicule n'est créé qu'une fois le paiement accepté
+                    Pay(player, price, "Achat véhicule : " + vehicleName, () =>
+                    {
+                        try
+                        {
+                            LifeDB.CreateVehicle(vehiculeModelID, JsonConvert.SerializeObject(new Life.PermissionSystem.Permissions()
+                            {
+                                owner = new Life.PermissionSystem.Entity()
+                                {
+                                    groupId = 0,
+                                    characterId = player.character.Id,
+                                },
+                                coOwners = new List<Life.PermissionSystem.Entity>()
+                            }));
+                            player.Notify("Menu", "Vous avez acheté " + vehicleName + " pour " + price + "€.", NotificationManager.Type.Success);
+                            Log("🚗 Achat Véhicule", LogBleu, "👤 Joueur", Who(player), "🚙 Véhicule", vehicleName, "💰 Prix", price + "€");
+                        }
+                        catch (Exception e)
+                        {
+                            player.Notify("Menu", "Une erreur est survenue.", NotificationManager.Type.Error);
+                            LogError("Livraison véhicule (" + vehicleName + ")", e);
+                        }
+                    });
                 }
                 catch (Exception e)
                 {

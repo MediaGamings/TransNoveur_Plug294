@@ -119,16 +119,22 @@ namespace TransNoveur_Plug294
                         return;
                     }
                     double total = Math.Round(item.Price * quantity, 2);
-                    if (!Pay(player, total, "Achat de " + item.Name))
-                    {
-                        player.Notify("Vendeur", "Vous n'avez pas assez d'argent (poche + banque).", NotificationManager.Type.Error);
-                        player.ClosePanel(panel);
-                        return;
-                    }
-                    player.setup.inventory.AddItem(item.Id, quantity, data);
-                    player.Notify("Vendeur", "Vous avez acheté " + quantity + " " + item.Name + " pour " + total + "€.", NotificationManager.Type.Success);
-                    Log("🛒 Achat Shop", logColor, "👤 Joueur", Who(player), "🏪 Shop", title, "🗂️ Catégorie", category.Name, "📦 Article", quantity + " × " + item.Name, "💰 Montant", total + "€");
                     player.ClosePanel(panel);
+                    // La marchandise n'est livrée qu'une fois le paiement accepté
+                    Pay(player, total, "Achat de " + item.Name, () =>
+                    {
+                        try
+                        {
+                            player.setup.inventory.AddItem(item.Id, quantity, data);
+                            player.Notify("Vendeur", "Vous avez acheté " + quantity + " " + item.Name + " pour " + total + "€.", NotificationManager.Type.Success);
+                            Log("🛒 Achat Shop", logColor, "👤 Joueur", Who(player), "🏪 Shop", title, "🗂️ Catégorie", category.Name, "📦 Article", quantity + " × " + item.Name, "💰 Montant", total + "€");
+                        }
+                        catch (Exception e)
+                        {
+                            player.Notify("Vendeur", "Une erreur est survenue.", NotificationManager.Type.Error);
+                            LogError("Livraison achat (" + item.Name + ")", e);
+                        }
+                    });
                 }
                 catch (Exception e)
                 {

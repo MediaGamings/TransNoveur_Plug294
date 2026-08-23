@@ -105,6 +105,17 @@ namespace TransNoveur_Plug294
                 player.Notify("Point Menu", "Nouveau point Menu définie sur votre position.", NotificationManager.Type.Success);
                 Log("⚙️ Administration", LogOrange, "👤 Admin", Who(player), "📋 Action", "Point Menu déplacé", "📌 Coordonnées", Coords(config.GetPointMenuPosition()));
             });
+            configuration.AddTabLine("Achats payés par l'entreprise",
+                config.bizPaysPurchases ? "<color=#24a424> oui </color>" : "<color=#f08000> non </color>", GetItemIconId(1302), ui =>
+            {
+                config.bizPaysPurchases = !config.bizPaysPurchases;
+                SaveConfig();
+                player.Notify("Menu", config.bizPaysPurchases
+                    ? "Les achats sont désormais payés par la caisse de l'entreprise."
+                    : "Les achats sont désormais payés par le joueur.", NotificationManager.Type.Success, 6);
+                Log("⚙️ Administration", LogOrange, "👤 Admin", Who(player), "📋 Action", "Achats payés par l'entreprise : " + (config.bizPaysPurchases ? "oui" : "non"));
+                ConfigMenu(player);
+            });
             configuration.AddTabLine("ID de l'entreprise", "", GetItemIconId(1302), ui =>
             {
                 config.bizId = player.character.BizId;

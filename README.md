@@ -21,10 +21,15 @@ Toutes les machines du jeu, rangées par métier en 9 catégories : **Bois**, **
 Outils de l'IllegalPoint (pied de biche, tenaille, couteaux), armes et composants complets de la culture de cannabis, pour approvisionner gangs et organisations. Prix officiels. **L'onglet se désactive depuis le menu Configuration**, pour les serveurs qui ne veulent pas de contenu illégal.
 
 ### 🛠️ Configuration (admins niveau 4 minimum)
-Tout se configure **en jeu** : points garage, menu et spawn des véhicules, entreprise (ID), affichage du Fournisseur Illégal, webhook Discord. Sauvegarde automatique dans `config.json`.
+Tout se configure **en jeu** : points garage, menu et spawn des véhicules, entreprise (ID), affichage du Fournisseur Illégal, qui paie les achats, webhook Discord. Sauvegarde automatique dans `config.json`.
+
+## 🏢 Achats payés par l'entreprise
+Les achats du plugin sont ceux de la boîte, pas de l'employé : la somme est prélevée sur la **caisse de l'entreprise**, via la banque d'entreprise du jeu — le mouvement apparaît dans son historique. Actif sur tous les achats : concessionnaire et les trois shops.
+
+Si la caisse est trop juste, le plugin demande au joueur s'il veut avancer de sa poche. **Rien n'est prélevé sans son accord**, et l'avance est tracée à part dans les logs pour que le patron sache qui rembourser. Désactivable en jeu pour revenir au paiement personnel.
 
 ## 💳 Paiement bancaire automatique
-Sans porte-monnaie ou avec un solde insuffisant en poche, la somme est prélevée sur le compte en banque, avec notification. Actif sur tous les achats : concessionnaire et les trois shops.
+Quand c'est le joueur qui paie, sans porte-monnaie ou avec un solde insuffisant en poche, la somme est prélevée sur son compte en banque, avec notification.
 
 ## 📜 Logs Discord
 Chaque transaction (véhicule, shop, garage), prélèvement bancaire, action admin et erreur du plugin est envoyée en embed dans un salon Discord : le serveur dispose de preuves en cas de litige joueur. **Chaque menu a sa couleur de cadre** — bleu pour la voiture, vert pour la restauration, gris pour les machines, violet pour l'illégal — et l'embed d'achat précise la catégorie de l'article. Le webhook se configure **en jeu**, une seule fois, puis est verrouillé — modifiable uniquement dans `config.json`, l'URL n'est jamais réaffichée en jeu.
